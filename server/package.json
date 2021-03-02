@@ -1,0 +1,17 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "A server web application",
+  "main": "index.js",
+  "scripts": {
+    "test": "node inspect index.js"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "wanglong",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.13.1"
+  }
+}

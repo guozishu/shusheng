@@ -1,0 +1,24 @@
+{
+  "name": "shusheng",
+  "version": "1.0.0",
+  "description": "node framework",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node server/index.js",
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guozishu/shusheng.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "wanglong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guozishu/shusheng/issues"
+  },
+  "homepage": "https://github.com/guozishu/shusheng#readme",
+  "dependencies": {}
+}
