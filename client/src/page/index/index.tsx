@@ -1,17 +1,15 @@
-import * as React from 'react';
-import './App.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
 
-function App() {
-  return (
-    <div className="App">
-      <div className="App-header">
-        <h2>Welcome to React</h2>
-      </div>
-      <p className="App-intro">
-        To get started, edit <code>src/App.tsx</code> and save to reload.
-      </p>
-    </div>
-  );
-}
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
-export default App;
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
