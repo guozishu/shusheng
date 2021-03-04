@@ -2,7 +2,6 @@
 class Index {
   async index() {
     const ctx = this;
-    
     await ctx.render('index')
   }
   async home() {
