@@ -8,11 +8,12 @@ class Index {
     const ctx = this;
     const body = ctx.request.body
     const getbody = ctx.query
-    await ctx.renderJson({
-      test:'test',
-      body,
-      getbody
-    })
+    // await ctx.renderJson({
+    //   test:'test',
+    //   body,
+    //   getbody
+    // })
+    await ctx.render('index')
   }
 }
 
