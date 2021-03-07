@@ -1,21 +1,23 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 
 import Hello from './containers/Hello';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import { enthusiasm } from './reducers/index';
+import store from './store';
 
 import './index.css';
 
-const store = createStore(enthusiasm, {
-  enthusiasmLevel: 1,
-  languageName: 'TypeScript',
-});
+const styles: React.CSSProperties = {
+  fontFamily: 'sans-serif',
+  textAlign: 'center',
+};
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Hello />
-  </Provider>,
-  document.getElementById('root') as HTMLElement
+const Root = () => (
+  <div style={styles}>
+    <Provider store={store}>
+      <Hello />
+    </Provider>
+  </div>
 );
+
+render(<Root />, document.getElementById('root') as HTMLElement);

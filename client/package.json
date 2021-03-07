@@ -13,6 +13,7 @@
   "author": "wanglong",
   "license": "ISC",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.5.0",
     "@types/enzyme": "^3.10.8",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.31",
