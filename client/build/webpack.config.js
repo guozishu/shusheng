@@ -1,16 +1,17 @@
 const path = require('path')
 
+const { entry } = require('./module/entry')
+const output = require('./module/output')
+
 module.exports = {
   mode: "development",
   devtool: "inline-source-map",
-  entry: './src/page/index/index.tsx',
-  output: {
-    path: path.resolve(__dirname, '../dist'),
-    filename: 'bundle.js'
-  },
+  entry: entry,
+  output: output,
   resolve: {
     // Add `.ts` and `.tsx` as a resolvable extension.
     extensions: [".ts", ".tsx", ".js"],
+    //根据 此规范进行解析。
     aliasFields: ['browser']
   },
   module: {
