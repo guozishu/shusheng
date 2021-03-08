@@ -14,7 +14,7 @@
         <meta content="yes" name="apple-touch-fullscreen">
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
         
-        {% block head %}
+        {% block header %}
         {% endblock %}
     </head>
     <body>
@@ -27,9 +27,8 @@
     {% endblock %}
     
     {% include "./footer.html" %}
-
-    {% block foot %}
+    <script src="/dist/framework.js" media="all"></script>
+    {% block footer %}
     {% endblock %}
-    <script src="/dist/bundle.js"></script>
     </body>
 </html>

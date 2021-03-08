@@ -20,10 +20,9 @@ function getEntries() {
   return entries
 }
 
-console.log(getEntries())
 /**
  * 入口
  */
 module.exports = {
-  entry: './src/pages/index/index.tsx'
+  entry: getEntries()
 }
