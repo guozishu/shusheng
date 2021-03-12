@@ -13,7 +13,7 @@ class Index {
     //   body,
     //   getbody
     // })
-    await ctx.render('index')
+    await ctx.render('home')
   }
 }
 

@@ -53,7 +53,7 @@ module.exports = (options) => {
   return async (ctx, next) => {
     const routeList = ctx.state.controller;
     const pagePath = page => {
-      return `../views/${routeList[0]}/${page}.${extname}`;
+      return `../views/${page}/index.${extname}`;
     }
     Object.defineProperties(ctx, {
       render: {

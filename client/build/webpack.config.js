@@ -1,11 +1,23 @@
-const path = require("path");
+const { getIfUtils, removeEmpty } = require("webpack-config-utils");
+
+const { ifProduction: ifProd, ifNotProduction: ifDev } = getIfUtils(
+  process.env.NODE_ENV
+);
 
 const { entry } = require("./module/entry");
 const { output } = require("./module/output");
+const {
+  cssModule,
+  sACssModule,
+  photoModule,
+  fontsModule,
+  jsModule,
+  tsModule,
+} = require("./module/loaders");
 
 module.exports = {
-  mode: "development",
-  devtool: "inline-source-map",
+  mode: ifProd("production", "development"),
+  devtool: ifProd("source-map", "cheap-module-source-map"), // "inline-source-map",
   target: "web",
   entry: entry,
   output: output,
@@ -17,12 +29,13 @@ module.exports = {
   },
   module: {
     rules: [
-      // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-      { test: /\.tsx?$/, loader: "ts-loader" },
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
+      jsModule(),
+      tsModule(),
+      fontsModule(),
+      cssModule(),
+      // sACssModule,
+      // photoModule,
+      
     ],
   },
   optimization: {
@@ -31,10 +44,10 @@ module.exports = {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'framework',
+          name: "framework",
         },
-        default: false
+        default: false,
       },
-    }
+    },
   },
 };

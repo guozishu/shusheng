@@ -7,17 +7,12 @@ import store from './store';
 
 import './index.css';
 
-const styles: React.CSSProperties = {
-  fontFamily: 'sans-serif',
-  textAlign: 'center',
-};
-
 const Root = () => (
-  <div style={styles}>
+  <div className={'container'}>
     <Provider store={store}>
       <Hello />
     </Provider>
   </div>
 );
 
-render(<Root />, document.getElementById('root') as HTMLElement);
+render(<Root />, document.getElementById('root'));
