@@ -13,7 +13,7 @@ function getEntries() {
   let entries = {}
   for (let page of pages) {
     if (/^[a-zA-Z]+$/.test(page)) {
-      entries[page] = path.join(filePath,`pages/${page}/index.${extname[0]}`)
+      entries[`${page}/index`] = path.join(filePath,`pages/${page}/index.${extname[0]}`)
     }
   }
   entries['common'] = path.join(filePath,`common/index.${extname[0]}`)

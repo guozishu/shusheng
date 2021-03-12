@@ -6,6 +6,7 @@ const compress = require('koa-compress')
 module.exports = () => {
   return compress({
     filter (content_type) {
+      console.log(content_type)
       return /text/i.test(content_type)
     },
     threshold: 1024,
@@ -15,6 +16,6 @@ module.exports = () => {
     deflate: {
       flush: require('zlib').constants.Z_SYNC_FLUSH
     },
-    br: false // disable brotli
+    br: true
   })
 }

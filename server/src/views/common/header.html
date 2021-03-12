@@ -1,0 +1,40 @@
+<nav class="navbar is-fixed-top">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <img src="/dist/common/images/home-logo.png" height="28">
+            <span class="navbar-title">
+                王龙·博文
+            </span>
+        </a>
+    </div>
+
+    <div class="navbar-menu">
+        <div class="navbar-end">
+            <a class="navbar-item search-box">
+                <input class="input is-rounded is-small" type="text" />
+            </a>
+            {% for item in firstMenus %}
+                <a class="navbar-item" data-id={{item.id}}>
+                    <span>{{item.name}}</span>
+                </a>
+            {% endfor %}
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    More
+                </a>
+                <div class="navbar-dropdown">
+                    {% for item in secondMenus %}
+                        <a class="navbar-item" data-id={{item.id}}>
+                            {{item.name}}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</nav>

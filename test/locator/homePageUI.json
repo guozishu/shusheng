@@ -1,0 +1,14 @@
+{
+  "homeSection": {
+    "locator": ".asyncButton",
+    "type": "css"
+  },
+  "homeButtonInc": {
+    "locator": ".inc",
+    "type": "css"
+  },
+  "homeButtonDec": {
+    "locator": ".dec",
+    "type": "css"
+  }
+}

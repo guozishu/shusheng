@@ -1,7 +1,15 @@
 module.exports = [
   {
     match: "/",
+    controller: "index.blog"
+  },
+  {
+    match: "/index1",
     controller: "index.index"
+  },
+  {
+    match: "/index",
+    controller: "index.guide"
   },
   {
     method: "get",
