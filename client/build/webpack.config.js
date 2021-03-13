@@ -1,5 +1,5 @@
 const { getIfUtils, removeEmpty } = require("webpack-config-utils");
-
+const TerserPlugin = require("terser-webpack-plugin");
 const { ifProduction: ifProd, ifNotProduction: ifDev } = getIfUtils(
   process.env.NODE_ENV
 );
@@ -14,6 +14,16 @@ const {
   jsModule,
   tsModule,
 } = require("./module/loaders");
+
+
+const {
+  miniCssExtractPluginFun,
+  optimizeCSSAssetsPluginFun,
+  compressionPluginFun,
+  manifestPluginFun,
+  terserPluginFun,
+  cleanWebpackPluginFun
+} = require('./module/plugins')
 
 module.exports = {
   mode: ifProd("production", "development"),
@@ -50,4 +60,9 @@ module.exports = {
       },
     },
   },
+  plugins: [// 插件
+    miniCssExtractPluginFun(),
+    optimizeCSSAssetsPluginFun(),
+    compressionPluginFun()
+  ],
 };

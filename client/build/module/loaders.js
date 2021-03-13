@@ -1,5 +1,7 @@
 // 将样式表抽离成专门的单独文件。
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// 加载normalize.css或sanitize.css 提供了跨浏览器的高度一致性。
+const postcssNormalize = require('postcss-normalize')
 const { getIfUtils, removeEmpty } = require("webpack-config-utils");
 
 const { ifProduction: ifProd, ifNotProduction: ifDev } = getIfUtils(
@@ -30,6 +32,7 @@ const postcssLoader = {
             stage: 3,
           },
         ],
+        postcssNormalize()
       ],
     },
   },
