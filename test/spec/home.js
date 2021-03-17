@@ -12,8 +12,7 @@ describe('@render header', function() {
 
   it('add number', async function() {
     const nemo = this.nemo
-    await nemo.view._find('.inc').click()
-    //await nemo.view.homeUI.homeButtonInc().click()
+    await nemo.view.homePageUI.homeButtonInc().click()
     await nemo.driver.sleep(12000)
   })
 
