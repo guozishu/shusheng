@@ -1,0 +1,217 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-03-17T05:19:08.000Z",
+    "end": "2021-03-17T05:19:35.173Z",
+    "duration": 27173,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "9d3b3579-aa74-40cf-b912-e261a6791650",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [
+        {
+          "title": "\"before all\" hook",
+          "fullTitle": "\"before all\" hook",
+          "timedOut": false,
+          "duration": 0,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "if (Suite.tests.length > 0) {\n  return createNemo()\n    .then(bindNemo.bind(this));\n}\nreturn;",
+          "err": {},
+          "uuid": "53bea3dd-c77a-447f-9f91-d3185cd87d89",
+          "parentUUID": "9d3b3579-aa74-40cf-b912-e261a6791650",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "afterHooks": [
+        {
+          "title": "\"after all\" hook: destroyNemo",
+          "fullTitle": "\"after all\" hook: destroyNemo",
+          "timedOut": false,
+          "duration": 1,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "log('destroyNemo: called');\nif (this.nemo) {\n  if (this.nemo.driver) {\n    log('Quitting nemo driver instance');\n    return this.nemo.driver.quit()\n      .then(function () {\n        log('destroyNemo: Quit driver');\n        return Promise.resolve();\n      });\n  }\n  log('Nemo instance does not have a driver to quit');\n}",
+          "err": {},
+          "uuid": "10a18ee7-00c8-465e-ae94-aa177ca8ad45",
+          "parentUUID": "9d3b3579-aa74-40cf-b912-e261a6791650",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6bb1973d-ab76-4c5f-8e89-fd9979172be7",
+          "title": "@render header",
+          "fullFile": "C:\\Users\\longwang\\Documents\\project\\shusheng\\test\\spec\\home.js",
+          "file": "\\test\\spec\\home.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook",
+              "fullTitle": "@render header \"before all\" hook",
+              "timedOut": false,
+              "duration": 9633,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if (Suite.tests.length > 0) {\n  return createNemo()\n    .then(bindNemo.bind(this));\n}\nreturn;",
+              "err": {},
+              "uuid": "ecddbe4b-d303-4781-8aec-2cf9389f00d1",
+              "parentUUID": "6bb1973d-ab76-4c5f-8e89-fd9979172be7",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"before all\" hook",
+              "fullTitle": "@render header \"before all\" hook",
+              "timedOut": false,
+              "duration": 238,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// base url http://localhost:3000 \nawait this.nemo.driver.get(`${this.nemo.data.baseUrl}/home`)",
+              "err": {},
+              "uuid": "be530daa-2f3a-4c97-81f0-c5cc9efc5a73",
+              "parentUUID": "6bb1973d-ab76-4c5f-8e89-fd9979172be7",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook: destroyNemo",
+              "fullTitle": "@render header \"after all\" hook: destroyNemo",
+              "timedOut": false,
+              "duration": 216,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "log('destroyNemo: called');\nif (this.nemo) {\n  if (this.nemo.driver) {\n    log('Quitting nemo driver instance');\n    return this.nemo.driver.quit()\n      .then(function () {\n        log('destroyNemo: Quit driver');\n        return Promise.resolve();\n      });\n  }\n  log('Nemo instance does not have a driver to quit');\n}",
+              "err": {},
+              "uuid": "934f43d4-900c-4e2f-b0f7-974295908025",
+              "parentUUID": "6bb1973d-ab76-4c5f-8e89-fd9979172be7",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"after each\" hook",
+              "fullTitle": "@render header \"after each\" hook",
+              "timedOut": false,
+              "duration": 5001,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await this.nemo.driver.sleep(5000)",
+              "err": {},
+              "uuid": "020baf6a-5884-488f-8df5-24210fb8752e",
+              "parentUUID": "6bb1973d-ab76-4c5f-8e89-fd9979172be7",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "add number",
+              "fullTitle": "@render header add number",
+              "timedOut": false,
+              "duration": 12067,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nemo = this.nemo\nawait nemo.view._find('.inc').click()\n//await nemo.view.homeUI.homeButtonInc().click()\nawait nemo.driver.sleep(12000)",
+              "err": {},
+              "uuid": "badbd45b-49e4-458e-aa52-b37ff8be7ede",
+              "parentUUID": "6bb1973d-ab76-4c5f-8e89-fd9979172be7",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "badbd45b-49e4-458e-aa52-b37ff8be7ede"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 12067,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 180000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 180000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": true,
+        "reportFilename": "nemo-report",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "5.0.0"
+    },
+    "marge": {
+      "options": {
+        "quiet": true,
+        "reportDir": "C:\\Users\\longwang\\Documents\\project\\shusheng\\test\\report/03-17-2021/13-19-07/profile!base",
+        "reportFilename": "nemo-report",
+        "assetsDir": "C:\\Users\\longwang\\Documents\\project\\shusheng\\test\\report/mochawesomeAssets"
+      },
+      "version": "4.1.0"
+    }
+  }
+}

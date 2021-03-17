@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "node server/index.js",
     "build": "./client/node_modules/.bin/webpack --config ./client/build/webpack.config.js",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "test:functional": "nemo -B test",
+    "test:functional:debug": "nemo -B test --inspect-brk --inspect"
   },
   "repository": {
     "type": "git",
@@ -22,5 +24,7 @@
   },
   "homepage": "https://github.com/guozishu/shusheng#readme",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "nemo": "^4.12.2"
+  }
 }
