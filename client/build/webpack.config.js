@@ -25,17 +25,20 @@ const {
   cleanWebpackPluginFun
 } = require('./module/plugins')
 
+const { devServer } = require('./module/wds')
+
 module.exports = {
   mode: ifProd("production", "development"),
   devtool: ifProd("source-map", "cheap-module-source-map"), // "inline-source-map",
   target: "web",
   entry: entry,
   output: output,
+  devServer:devServer,
   resolve: {
     // Add `.ts` and `.tsx` as a resolvable extension.
     extensions: [".ts", ".tsx", ".js"],
     //根据 此规范进行解析。
-    aliasFields: ["browser"],
+    aliasFields: ["browser"]
   },
   module: {
     rules: [
@@ -44,7 +47,7 @@ module.exports = {
       fontsModule(),
       cssModule(),
       // sACssModule,
-      // photoModule,
+      photoModule(),
       
     ],
   },
@@ -63,6 +66,7 @@ module.exports = {
   plugins: [// 插件
     miniCssExtractPluginFun(),
     optimizeCSSAssetsPluginFun(),
-    compressionPluginFun()
+    compressionPluginFun(),
+    cleanWebpackPluginFun()
   ],
 };

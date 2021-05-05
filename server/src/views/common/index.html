@@ -1,34 +1,42 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>hello world</title>
-        <!-- In HTML5 -->
-        <meta charset="utf-8">
-        <meta name="referrer" content="origin">
-        <!-- Defining the charset in HTML4 -->
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <!-- Redirect page after 5 seconds -->
-        <!-- <meta http-equiv="refresh" content="5;url=http://kongzi.ga/"> -->
-        <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes">
-        <meta content="yes" name="apple-mobile-web-app-capable">
-        <meta content="yes" name="apple-touch-fullscreen">
-        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-        
-        {% block header %}
-        {% endblock %}
-    </head>
-    <body>
-    {% if headNavFlag %}
-        {% include "./header.html" %}
-    {% endif %}
-    
-    {% block body %}
 
+<head>
+    <title>hello world</title>
+    <!-- In HTML5 -->
+    <meta charset="utf-8">
+    <meta name="referrer" content="origin">
+    <!-- Defining the charset in HTML4 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- Redirect page after 5 seconds -->
+    <!-- <meta http-equiv="refresh" content="5;url=http://kongzi.ga/"> -->
+    <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta name="keywords" content="{{keywords}}" />
+    <meta name="description" content="{{description}}" />
+    {% block header %}
     {% endblock %}
-    
-    {% include "./footer.html" %}
+</head>
+
+<body>
+    <div class="frame-view">
+        {% if headerDisplay %}
+        {% include "./header.html" %}
+        {% endif %}
+
+        {% block body %}
+
+        {% endblock %}
+
+        {% include "./footer.html" %}
+    </div>
     <script src="/dist/framework.js" media="all"></script>
+    <script src="/dist/common.js" media="all"></script>
     {% block footer %}
     {% endblock %}
-    </body>
+</body>
+
 </html>

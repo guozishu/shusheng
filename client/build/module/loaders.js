@@ -73,29 +73,13 @@ const photoModule = () => {
       {
         loader: "url-loader",
         options: {
-          limit: 100000,
+          limit: 100,
+          outputPath: path => path.replace(/src\//g, ""),
           name: "[path][name].[ext]",
         },
       },
     ],
   };
-  //   {
-  //     test: photoRegex,
-  //     use: [
-  //       {
-  //         loader: "file-loader",
-  //         options: {
-  //           outputPath: function (url) {
-  //             url = url.replace(/pages\//g, "");
-  //             return url;
-  //           },
-  //           name: "[path][name].[ext]",
-  //           context: "",
-  //           limit: 891278,
-  //         },
-  //       },
-  //     ],
-  //   }
 };
 
 const fontsModule = () => {
@@ -103,7 +87,7 @@ const fontsModule = () => {
     test: fontsRegex,
     type: "asset/resource",
     generator: {
-      filename: 'fonts/[name][ext][query]'
+      filename: 'common/fonts/[name][ext][query]'
     }
   };
 };

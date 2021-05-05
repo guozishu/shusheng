@@ -13,7 +13,7 @@ const path = require('path')
 module.exports = function(){
   return async (ctx, next) => {
     ctx.logger = new Logger({
-      dir: path.resolve(__dirname, '../../log'),
+      dir: path.resolve(__dirname, '../../logs'),
       file: `${utils.YYYYMMDD()}.log`
     })
     await next()
