@@ -5,6 +5,10 @@
     line-height: 1.7;
 }
 
+.sidebar>.sidebar-links {
+    padding: 1.5rem 0;
+}
+
 .sidebar-heading {
     color: #2c3e50;
     -webkit-transition: color .15s ease;

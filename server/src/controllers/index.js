@@ -1,10 +1,12 @@
 
+const { connection } =  require('../lib/common/connection');
+
 class Index {
   async index() {
     const ctx = this;
     await ctx.render('index')
   }
-  async blog() {
+  async blog(scope) {
     const ctx = this;
     await ctx.render('blog')
   }

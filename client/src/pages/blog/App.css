@@ -15,3 +15,9 @@
   border-right: 1px solid #eaecef;
   overflow-y: auto;
 }
+
+.page {
+  padding-bottom: 2rem;
+  display: block;
+  padding-left: 20rem;
+}

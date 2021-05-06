@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sliders } from './features/sliders';
+import { Main } from './features/main';
 import './App.css';
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
         <Sliders />
       </aside>
       <main className="page">
-        page
+        <Main />
       </main>
     </div>
   );

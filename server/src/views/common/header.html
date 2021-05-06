@@ -13,44 +13,22 @@
             <a class="navbar-item search-box">
                 <input class="input is-rounded is-small" type="text" />
             </a>
-            <a class="navbar-item">
-                <span>NodeJs</span>
-            </a>
-
-            <a class="navbar-item">
-                <span>JavaScript</span>
-            </a>
-
-            <a class="navbar-item">
-                <span>Css</span>
-            </a>
-
-            <a class="navbar-item">
-                <span>docker</span>
-            </a>
-
-            <a class="navbar-item">
-                <span>linux</span>
-            </a>
+            {% for item in firstMenus %}
+                <a class="navbar-item" data-id={{item.id}}>
+                    <span>{{item.name}}</span>
+                </a>
+            {% endfor %}
 
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
                     More
                 </a>
-
                 <div class="navbar-dropdown">
-                    <a class="navbar-item">
-                        设计模式
-                    </a>
-                    <a class="navbar-item">
-                        算法
-                    </a>
-                    <a class="navbar-item">
-                        数据结构
-                    </a>
-                    <a class="navbar-item">
-                        数据库
-                    </a>
+                    {% for item in secondMenus %}
+                        <a class="navbar-item" data-id={{item.id}}>
+                            {{item.name}}
+                        </a>
+                    {% endfor %}
                 </div>
             </div>
 
