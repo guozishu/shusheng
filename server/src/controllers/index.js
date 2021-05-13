@@ -10,6 +10,10 @@ class Index {
     const ctx = this;
     await ctx.render('blog')
   }
+  async entry(scope) {
+    const ctx = this;
+    await ctx.render('entry')
+  }
   async guide() {
     const ctx = this;
     await ctx.render('guide')

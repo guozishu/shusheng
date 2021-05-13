@@ -4,6 +4,10 @@ module.exports = [
     controller: "index.blog"
   },
   {
+    match: "/face",
+    controller: "index.entry"
+  },
+  {
     match: "/index1",
     controller: "index.index"
   },
