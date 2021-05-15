@@ -70,8 +70,8 @@ export function Main() {
 function Login() {
     const [user,setUser] = useState('');
     const [pwd,setPwd] = useState('');
+    const [isShow] = useState(parseInt(document.getElementById('login').value, 10))
     const handInLogin = () => {
-        console.log(user,pwd)
         fetch('/login', {
             body: JSON.stringify({
                 user,
@@ -87,7 +87,7 @@ function Login() {
           })
        
     }
-    return <div className="content">
+    return <div className={`content modal ${isShow?'':'is-active'}`}>
         <div className="modal-background"></div>
         <div className="modal-content">
             <div className="box">
