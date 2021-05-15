@@ -28,5 +28,15 @@ module.exports = [
     method: "post",
     match: "/home",
     controller: "index.home"
+  },
+  {
+    method: "post",
+    match: "/login",
+    controller: "index.login"
+  },
+  {
+    mothod: 'post',
+    match: '/pass',
+    controller: "index.pass"
   }
 ];

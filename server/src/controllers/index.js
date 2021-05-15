@@ -1,5 +1,9 @@
 
 const { connection } =  require('../lib/common/connection');
+const {
+  guidStrList,
+  session
+} = require('../lib/common/common');
 
 class Index {
   async index() {
@@ -12,7 +16,26 @@ class Index {
   }
   async entry(scope) {
     const ctx = this;
+  scope.isLogin = 0
+  const sessionToken = session.get('token');
+  const cookieToken=ctx.cookies.get('token');
+  if (sessionToken && sessionToken === cookieToken) {
+    scope.isLogin =  1
+  }
+  
     await ctx.render('entry')
+  }
+  async pass(scope) {
+    const ctx = this;
+    let result = {
+      isLogin: false
+    }
+    const sessionToken = session.get('token');
+    const cookieToken=ctx.cookies.get('token');
+    if (sessionToken && sessionToken === cookieToken) {
+      result.isLogin =  true
+    }
+    await ctx.renderJson(result)
   }
   async guide() {
     const ctx = this;
@@ -28,6 +51,29 @@ class Index {
       getbody
     })
     //await ctx.render('home')
+  }
+
+  async login(scope) {
+    const ctx =this;
+    const {user ,pwd } = JSON.parse(ctx.request.body);
+    const date = new Date();
+    const time = `${date.getFullYear()}${date.getMonth()+1}${date.getDate()}${date.getHours()}`;
+    let result = {
+      data: 'failed',
+      code: -1
+    };
+    if (user === 'wanglong' && pwd === `guozishu${time}`) {
+      const token = guidStrList(5);
+      session.set('token', token, 21600);
+      ctx.cookies.set("token", token, {
+        domain: ctx.hostname,
+        path: '/',
+        maxAge: 21600000
+      });
+      result.data = 'success';
+      result.code = 0
+    }
+    await ctx.renderJson(result)
   }
 }
 

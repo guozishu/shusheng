@@ -1,4 +1,4 @@
-import React, { Children, useEffect } from 'react';
+import React, { Children, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import  { usePortal } from '../../../components/index';
 import './index.css';
@@ -26,7 +26,7 @@ export function Main() {
     return (
         <div className="content">
             <Modal>
-                <Child />
+                <Login />
             </Modal>
             <Portal id="root">
                 <p>portal</p>
@@ -67,8 +67,50 @@ export function Main() {
     );
 }
 
-function Child(){
-    return <div className="child">
-        child
+function Login() {
+    const [user,setUser] = useState('');
+    const [pwd,setPwd] = useState('');
+    const handInLogin = () => {
+        console.log(user,pwd)
+        fetch('/login', {
+            body: JSON.stringify({
+                user,
+                pwd
+            }),
+            method: 'POST'
+          })
+          .then(response => response.json())
+          .then(res => {
+              if (!res.code) {
+                window.location.reload()
+              }
+          })
+       
+    }
+    return <div className="content">
+        <div className="modal-background"></div>
+        <div className="modal-content">
+            <div className="box">
+            <div className="field">
+                <p className="control has-icons-left has-icons-right">
+                    <input className="input" onChange={e => setUser(e.target.value)} value={user} type="email" placeholder="账号" />
+                    <span className="icon is-small is-left">
+                        <i className="fas icon-user"></i>
+                    </span>
+                </p>
+            </div>
+            <div className="field">
+                <p className="control has-icons-left">
+                    <input className="input" onChange={e => setPwd(e.target.value)} value={pwd} type="password" placeholder="密码" />
+                    <span className="icon is-small is-left">
+                        <i className="fas icon-lock"></i>
+                    </span>
+                </p>
+            </div>
+            <div className="buttons">
+                <button onClick={handInLogin} className="button is-success">登录</button>
+            </div>
+            </div>
+        </div>
     </div>
 }
