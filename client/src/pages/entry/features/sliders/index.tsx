@@ -1,18 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useParams
-  } from "react-router-dom";
-import constants from './constants';
 import './Index.css'
 
 export function Sliders(props) {
     const dispatch = useDispatch();
-    console.log(constants)
     const Child = props.component
     return (
         <ul className="sidebar-links">
