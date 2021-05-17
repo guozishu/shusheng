@@ -55,7 +55,7 @@ class Index {
 
   async login(scope) {
     const ctx =this;
-    const {user ,pwd } = JSON.parse(ctx.request.body);
+    const {user ,pwd } = ctx.request.body;
     const date = new Date();
     const time = `${date.getFullYear()}${date.getMonth()+1}${date.getDate()}${date.getHours()}`;
     let result = {

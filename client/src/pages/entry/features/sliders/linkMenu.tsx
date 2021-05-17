@@ -9,8 +9,9 @@ export default function LinkComponent() {
     <>
       {
         Object.entries(constants.FACE_SLIDERS).map((item, index) => {
+          const pagePath = item[0].toLowerCase();
           return <li key={index}>
-            <Link className="sidebar-link" to={item[0].toLowerCase()}>{item[1]}</Link>
+            <Link className="sidebar-link" to={pagePath}>{item[1]}</Link>
           </li>
         })
       }

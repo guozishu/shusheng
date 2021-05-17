@@ -1,3 +1,5 @@
+const home = require('./home')
+
 module.exports = [
   {
     match: "/",
@@ -35,8 +37,8 @@ module.exports = [
     controller: "index.login"
   },
   {
-    mothod: 'post',
+    method: 'post',
     match: '/pass',
     controller: "index.pass"
   }
-];
+].concat(home);

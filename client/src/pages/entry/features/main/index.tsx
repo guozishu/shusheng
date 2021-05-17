@@ -13,7 +13,6 @@ export function Main(props) {
     const Child = props.children
     return (
         <div className="content">
-            main
             {
                 props.children
             }

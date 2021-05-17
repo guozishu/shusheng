@@ -2,67 +2,20 @@ import React, {Suspense} from 'react';
 import {
   useParams
 } from "react-router-dom";
+import constants from '../../constants'
 
 export default function Note() {
   let { id } = useParams();
-  const Menu = React.lazy(() => import('./menuContent'));
+  if (id === 'face') {
+    id = 'first_menu'
+  }
+  const Menu = React.lazy(() => import('../firstMenu/index'));
   return (
     <div>
-      <h1>ID: {id}</h1>
+      <h1>{constants.FACE_SLIDERS[id.toUpperCase()]}</h1>
       <Suspense fallback={<div>Loading...</div>}>
-      <Menu />
+        <Menu />
       </Suspense>
-      
-      <div className="columns is-multiline is-mobile">
-        <div className="column is-one-quarter is-3">
-        First column
-        </div>
-        <div className="column is-one-quarter is-3">
-          Second column
-        </div>
-        <div className="column is-one-quarter is-3">
-          Third column
-        </div>
-        <div className="column is-one-quarter is-3">
-          Fourth column
-        </div>
-        <div className="column is-one-quarter is-3">
-        First column
-        </div>
-        <div className="column is-one-quarter is-3">
-          Second column
-        </div>
-        <div className="column is-one-quarter is-3">
-          Third column
-        </div>
-        <div className="column is-one-quarter is-3">
-          Fourth column
-        </div>
-        <div className="column is-one-quarter is-3">
-        First column
-        </div>
-        <div className="column is-one-quarter is-3">
-          Second column
-        </div>
-        <div className="column is-one-quarter is-3">
-          Third column
-        </div>
-        <div className="column is-one-quarter is-3">
-          Fourth column
-        </div>
-        <div className="column is-one-quarter is-3">
-        First column
-        </div>
-        <div className="column is-one-quarter is-3">
-          Second column
-        </div>
-        <div className="column is-one-quarter is-3">
-          Third column
-        </div>
-        <div className="column is-one-quarter is-3">
-          Fourth column
-        </div>
-      </div>
     </div>
   );
 }
