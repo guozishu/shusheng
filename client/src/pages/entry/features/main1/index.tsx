@@ -29,7 +29,7 @@ export function Main() {
                 <Login />
             </Modal>
             <Portal id="root">
-                <p>portal</p>
+                <Login />
             </Portal>
             <div className="tile">
                 <div className="tile is-parent is-vertical">
@@ -77,6 +77,9 @@ function Login() {
                 user,
                 pwd
             }),
+            headers: {
+                'content-type': 'application/json'
+              },
             method: 'POST'
           })
           .then(response => response.json())

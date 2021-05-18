@@ -25,6 +25,18 @@ export default function FirstMenu(props) {
       })
   }
 
+  const queryFirstMenu = () => {
+    request({
+      url: '/query',
+      params: {
+        name: 'articleType',
+        fields: 'id,name'
+      }
+    }, function (res) {
+      setCategory(res.data)
+    })
+  }
+
   const handInMenu = function () {
     request({
       url: '/insert',
@@ -36,10 +48,7 @@ export default function FirstMenu(props) {
       }
     }, function (res): void {
       if (!res.code) {
-        setCategory([...category, ...[{
-          id: Date.now(),
-          name: menuName
-        }]])
+        queryFirstMenu()
         alert('新增成功.')
       } else {
         alert('新增失败.')
@@ -48,16 +57,29 @@ export default function FirstMenu(props) {
   }
 
   useEffect(() => {
-    request({
-      url: '/query',
-      params: {
-        name: 'articleType',
-        fields: 'id,name'
-      }
-    }, function (res) {
-      setCategory(res.data)
-    })
+    queryFirstMenu()
   }, [])
+
+  const deleteCatetory = id => {
+    if (window.confirm('确定删除当前菜单？')) {
+      request({
+        url: '/delete',
+        params: {
+          name: "articleType",
+          fields: {
+            id
+          }
+        }
+      }, function (res): void {
+        if (!res.code) {
+          queryFirstMenu()
+          alert('删除成功.')
+        } else {
+          alert('删除失败.')
+        }
+      })
+    }
+  }
 
   return (
     <div className="container">
@@ -66,7 +88,9 @@ export default function FirstMenu(props) {
           category.map((item, index) => {
             const { id, name } = item
             return <div key={id} className="column is-one-quarter is-3">
-              <div className="column__name">{name}</div>
+              <div className="column__name">
+                {name}<button onClick={() => deleteCatetory(id)} className="delete"></button>
+              </div>
             </div>
           })
         }
@@ -78,7 +102,7 @@ export default function FirstMenu(props) {
               <input className="input" value={menuName} onChange={e => setMenuName(e.target.value)} type="text" placeholder="一级菜单名" />
             </div>
             <div className="control">
-              <button className="button is-primary" onClick={handInMenu} >提交</button>
+              <button className="button is-primary" onClick={handInMenu} >新增</button>
             </div>
           </div>
         </div>
