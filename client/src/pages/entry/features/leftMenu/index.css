@@ -1,0 +1,13 @@
+
+.first__menu .button {
+  min-width: 12rem;
+}
+
+.item__hover {
+  background-color: whitesmoke;
+}
+
+.secondmenu__imput,.secondmenu__imput:hover,.secondmenu__imput:focus{
+  border: none;
+  outline: none;
+}

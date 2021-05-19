@@ -38,22 +38,28 @@ export default function FirstMenu(props) {
   }
 
   const handInMenu = function () {
-    request({
-      url: '/insert',
-      params: {
-        name: "articleType",
-        fields: {
-          "name": menuName
+    if (window.confirm('确定新增当前菜单？')) {
+      if (!menuName) {
+        alert('菜单不能为空.')
+      }
+      request({
+        url: '/insert',
+        params: {
+          name: "articleType",
+          fields: {
+            "name": menuName
+          }
         }
-      }
-    }, function (res): void {
-      if (!res.code) {
-        queryFirstMenu()
-        alert('新增成功.')
-      } else {
-        alert('新增失败.')
-      }
-    })
+      }, function (res): void {
+        if (!res.code) {
+          queryFirstMenu()
+          alert('新增成功.')
+        } else {
+          alert('新增失败.')
+        }
+      })
+    }
+    
   }
 
   useEffect(() => {

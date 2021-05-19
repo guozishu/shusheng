@@ -11,9 +11,6 @@ export function Sliders(props) {
                 <section className="sidebar-group depth-0">
                     <ul className="sidebar-links sidebar-group-items">
                         <Child />
-                        <li> 
-                            <a href="#" className="active sidebar-link">编辑顶部菜单</a>
-                        </li>
                     </ul>
                 </section>
             </li>
