@@ -13,7 +13,7 @@ export default function LeftMenu(props) {
 
   const [secondMenu, setSecondMenu] = useState([]);
   const [selectedSecondMenu,setSelectedSecondMenu] = useState<Category>({id:-1,name:''});
-  const [showSecondMenu,setShowSecondMenu] = useState('is-hoverable')
+  const [showSecondMenu,setShowSecondMenu] = useState('')
 
   const [menuName, setMenuName] = useState('');
 

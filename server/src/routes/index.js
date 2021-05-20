@@ -40,5 +40,10 @@ module.exports = [
     method: 'post',
     match: '/pass',
     controller: "index.pass"
+  },
+  {
+    method:'post',
+    match:'/select',
+    controller: 'index.select'
   }
 ].concat(home);

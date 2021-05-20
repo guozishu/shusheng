@@ -75,6 +75,23 @@ class Index {
     }
     await ctx.renderJson(result)
   }
+  async select(scope) {
+    const ctx = this;
+    let result = {
+      code: -1,
+      message: 'error'
+    }
+    const params = ctx.request.body;
+    const { name,fields,condition } = params
+    const conn = await connection();
+    const sql = `select ${fields} from ${name} where 1 = 1 ${condition?`and ${condition}`:''}`
+    const res = await conn.query(sql);
+    result = {
+      code: 0,
+      data: res
+    }
+    await ctx.renderJson(result)
+  }
 }
 
 module.exports = Index;
