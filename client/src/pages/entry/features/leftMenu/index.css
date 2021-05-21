@@ -11,3 +11,15 @@
   border: none;
   outline: none;
 }
+
+.section {
+  padding: 0;
+}
+
+.content .for-toolbar ul {
+  margin-bottom: 0;
+}
+
+.for-container pre {
+  font-size: medium!important;
+}

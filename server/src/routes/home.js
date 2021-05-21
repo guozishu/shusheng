@@ -13,5 +13,11 @@ module.exports = [
     method:'post',
     match:'/delete',
     controller:'home.delete'
+  },
+  {
+    method:'post',
+    match:'/transaction',
+    controller:'home.transaction'
   }
+  
 ]

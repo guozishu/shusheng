@@ -1,5 +1,5 @@
 
-const { connection } =  require('../lib/common/connection');
+const { connection, pool } =  require('../lib/common/connection');
 const {
   guidStrList,
   session
@@ -91,6 +91,48 @@ class Home {
       }
     }
     await ctx.renderJson(result)
+  }
+  async transaction(scope) {
+    const ctx = this;
+    const pass = new Pass();
+    const { isLogin } = await pass.pass.bind(ctx)(scope)
+    const res = {
+      code: -1,
+      message: 'failed'
+    }
+    if (isLogin) {
+      const { multipleTable } = ctx.request.body;
+      const conn = await connection();
+      const result = await conn.beginTransaction()
+        .then(() => {
+          for (const [index, item] of multipleTable.entries()) {
+            const { name, fields } = item;
+            const keys = Object.keys(fields),values = Object.values(fields);
+            let columnMames = '?,'.repeat(keys.length);
+            columnMames = `(${columnMames.slice(0, columnMames.length - 1)})`;
+            const sql = `INSERT INTO ${name} (${keys.join(',')}) value ${columnMames}`;
+            if (index !== multipleTable.length) {
+              conn.query(sql, values)
+            } else {
+              return conn.query(sql, values)
+            }
+          }
+        })
+        .then(() => {
+          conn.commit();
+          return {
+            code: 0,
+            message: 'success'
+          }
+        })
+        .catch((err) => {
+          conn.rollback();
+          return res
+        })
+
+      await ctx.renderJson(result)
+
+    }
   }
 }
 
