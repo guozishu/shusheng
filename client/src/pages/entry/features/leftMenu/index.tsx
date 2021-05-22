@@ -51,39 +51,48 @@ export default function LeftMenu(props) {
     })
   }
 
-  const handInMenu = function () {
-    // request({
-    //   url: '/insert',
-    //   params: {
-    //     name: "articleType",
-    //     fields: {
-    //       "name": menuName
-    //     }
-    //   }
-    // }, function (res): void {
-    //   if (!res.code) {
-    //     queryFirstMenu()
-    //     alert('新增成功.')
-    //   } else {
-    //     alert('新增失败.')
-    //   }
-    // })
+  const querySecondMenu = () => {
+    request({
+      url: '/select',
+      params: {
+        name: 'articleCategory',
+        fields: 'id,name,pid,cust_id'
+      }
+    }, function (res) {
+      if (!res.code) {
+        setSelectedSecondMenu(res.data[0])
+        setSecondMenu(res.data)
+        if (res.data.length) {
+          setShowSecondMenu('is-hoverable')
+        }
+      }
+    })
   }
 
-  useEffect(() => {
-    queryFirstMenu();
+  
+
+  const handInMenu = function () {
+    const { id } = selectedCategory
+    const { name, id: secondId } = selectedSecondMenu
     request({
       url: '/transaction',
       params: { 
-
-        "multipleTable": [
+        multipleTable: [
             {
-                "name":"articleType",
-                "fields":  {"name":"test22"}
+              name:"articleInfo",
+                fields:  {
+                  type: 1,
+                  title: Date.now().toString(),
+                  content: encodeURIComponent(note)
+                }
             },
             {
-                "name":"articleCategory",
-                "fields":  {"pid": 11,"name":"test22"}
+              name:"articleCategory",
+              fields:  {
+                pid: id,
+                name:name,
+                cust_id: secondId.toString()
+              }
             }
         ]
     }
@@ -91,6 +100,11 @@ export default function LeftMenu(props) {
 
     })
     
+  }
+
+  useEffect(() => {
+    queryFirstMenu();
+    querySecondMenu();
   }, [])
 
   const choiceCategory = item => {
@@ -100,6 +114,26 @@ export default function LeftMenu(props) {
       setShowDropDown('is-hoverable')
     },300)
   }
+
+  const choiceSecondCategory = item => {
+    setShowSecondMenu('')
+    setSelectedSecondMenu({
+      id: item.id,
+      name: item.name
+    })
+    setTimeout(()=>{
+      setShowSecondMenu('is-hoverable')
+    },300)
+  }
+
+  const inputOnChange = e => {
+    setSelectedSecondMenu({
+      id: Date.now(),
+      name: e.target.value
+    })
+  }
+
+  
 
   return (
     <div className="container left__menu">
@@ -135,7 +169,7 @@ export default function LeftMenu(props) {
       <div className={`dropdown ${showSecondMenu}`}>
         <div className="dropdown-trigger">
           <div className="button">
-            <input value={selectedSecondMenu.name} onChange={e => setSelectedSecondMenu(e.target.value)} className="secondmenu__imput" type="text" />
+            <input value={selectedSecondMenu.name} onChange={inputOnChange} className="secondmenu__imput" type="text" />
             <span className="icon is-small">
               <i className="fas icon-angle-down"></i>
             </span>
@@ -149,7 +183,7 @@ export default function LeftMenu(props) {
                 return <a
                   key={id}
                   className={`dropdown-item ${id == selectedSecondMenu.id ? 'item__hover' : ''}`}
-                  onClick={() => choiceCategory(item)}
+                  onClick={() => choiceSecondCategory(item)}
                 >
                   {name}
                 </a>
@@ -179,9 +213,6 @@ export default function LeftMenu(props) {
       <div className="notification is-success is-light">
         <div className="block">
           <div className="field is-grouped">
-            <div className="control is-expanded">
-              <input className="input" value={menuName} onChange={e => setMenuName(e.target.value)} type="text" placeholder="一级菜单名" />
-            </div>
             <div className="control">
               <button className="button is-primary" onClick={handInMenu} >新增</button>
             </div>
