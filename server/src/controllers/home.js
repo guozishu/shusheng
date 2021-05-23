@@ -111,8 +111,6 @@ class Home {
             let columnMames = '?,'.repeat(keys.length);
             columnMames = `(${columnMames.slice(0, columnMames.length - 1)})`;
             const sql = `INSERT INTO ${name} (${keys.join(', ')}) value ${columnMames}`;
-            console.log(sql, values)
-            //INSERT INTO myTable value (?, ?)", [1, "mariadb"]
             if (index !== multipleTable.length) {
               conn.query(sql, values)
             } else {

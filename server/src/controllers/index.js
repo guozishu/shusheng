@@ -16,13 +16,12 @@ class Index {
   }
   async entry(scope) {
     const ctx = this;
-  scope.isLogin = 0
-  const sessionToken = session.get('token');
-  const cookieToken=ctx.cookies.get('token');
-  if (sessionToken && sessionToken === cookieToken) {
-    scope.isLogin =  1
-  }
-  
+    scope.isLogin = 0
+    const sessionToken = session.get('token');
+    const cookieToken=ctx.cookies.get('token');
+    if (sessionToken && sessionToken === cookieToken) {
+      scope.isLogin =  1
+    }
     await ctx.render('entry')
   }
   async pass(scope) {

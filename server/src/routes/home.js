@@ -19,5 +19,4 @@ module.exports = [
     match:'/transaction',
     controller:'home.transaction'
   }
-  
 ]

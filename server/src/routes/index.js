@@ -1,13 +1,10 @@
-const home = require('./home')
+const home = require('./home');
+const spa = require('./spa');
 
 module.exports = [
   {
     match: "/",
     controller: "index.blog"
-  },
-  {
-    match: "/face",
-    controller: "index.entry"
   },
   {
     match: "/index1",
@@ -46,4 +43,4 @@ module.exports = [
     match:'/select',
     controller: 'index.select'
   }
-].concat(home);
+].concat(home,spa);

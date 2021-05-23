@@ -23,3 +23,11 @@
 .for-container pre {
   font-size: medium!important;
 }
+.left__menu .input.is-primary {
+  min-width: none;
+  width: auto;
+  flex: 1;
+}
+.level * {
+  margin-right: 10px;
+}
