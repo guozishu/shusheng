@@ -18,14 +18,19 @@ class Home {
     }
     if (isLogin) {
       const params = ctx.request.body;
-      const { name,fields,condition } = params
+      const { name,fields,condition,needTotalPage } = params;
       const conn = await connection();
+      if (needTotalPage && needTotalPage.isPagination) {
+        const { name,fields } = needTotalPage;
+        const sql = `select ${fields} from ${name}`
+        const res = await conn.query(sql);
+        result.total = res;
+      }
       const sql = `select ${fields} from ${name} where 1 = 1 ${condition?`and ${condition}`:''}`
       const res = await conn.query(sql);
-      result = {
-        code: 0,
-        data: res
-      }
+      result.code = 0;
+      result.data = res;
+      result.message = 'success';
     }
     await ctx.renderJson(result)
   }
