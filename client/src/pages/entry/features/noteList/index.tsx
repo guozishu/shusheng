@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
 
-interface Menu {
-  id: number,
-  name: string
-}
-
 export default function FirstMenu(props) {
 
   const [notes, setNotes] = useState([]);
   const [colors] = useState(['primary','link','info','success','warning','danger'])
+
+  const [pageIndex,setPageIndex] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [middlePage,setMiddlePage] = useState<number[]>([]);
 
   const request = function (params, callback) {
     fetch(params.url, {
@@ -48,13 +47,49 @@ export default function FirstMenu(props) {
       url: '/query',
       params
     }, function (res) {
-      setNotes(res.data)
+      if (!res.code) {
+        setNotes(res.data);
+        const pageIndex = Math.ceil(res.total.totalPage/12)
+        setPageIndex(pageIndex);
+        const middlePage: number[] = []
+        let calculatePage = currentPage;
+        while(calculatePage < pageIndex - 1) {
+          middlePage.push(++calculatePage)
+        }
+        setMiddlePage(middlePage);
+      }
     })
   }
 
   useEffect(() => {
     queryNoteList({ pageSize: 12, pageIndex: 0, isPagination: true })
   }, [])
+
+  const onPagination = page => {
+    if (page > 0 && page <= pageIndex) {
+      setCurrentPage(page);
+    }
+    if (page - 2 > 0 && page + 1 < pageIndex) {
+      const middlePage = [ page - 1, page , page + 1 ];
+      setMiddlePage(middlePage);
+    }
+    if (page === 1) {
+      const middlePage: number[] = []
+      let calculatePage = 1;
+      while(calculatePage < pageIndex - 1) {
+        middlePage.push(++calculatePage)
+      }
+      setMiddlePage(middlePage);
+    }
+    if (page === pageIndex) {
+      const middlePage: number[] = [];
+      let calculatePage = pageIndex
+      while(calculatePage > 2) {
+        middlePage.push(--calculatePage)
+      }
+      setMiddlePage(middlePage.sort((a,b)=>a-b));
+    }
+  }
 
   return (
     <div className="container">
@@ -73,17 +108,23 @@ export default function FirstMenu(props) {
         </section>
         })
       }
-      <nav className="pagination is-centered" role="navigation" aria-label="pagination">
-        <a className="pagination-previous">上一页</a>
-        <a className="pagination-next">下一页</a>
+      <nav className="pagination is-centered">
+        <a onClick={() => onPagination(currentPage-1)} className="pagination-previous">上一页</a>
+        <a onClick={() => onPagination(currentPage+1)} className="pagination-next">下一页</a>
         <ul className="pagination-list">
-          <li><a className="pagination-link" aria-label="Goto page 1">1</a></li>
-          <li><span className="pagination-ellipsis">&hellip;</span></li>
-          <li><a className="pagination-link" aria-label="Goto page 45">45</a></li>
-          <li><a className="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
-          <li><a className="pagination-link" aria-label="Goto page 47">47</a></li>
-          <li><span className="pagination-ellipsis">&hellip;</span></li>
-          <li><a className="pagination-link" aria-label="Goto page 86">86</a></li>
+          <li><a onClick={() => onPagination(1)} className={`pagination-link ${currentPage === 1?'is-current':''}`}>1</a></li>
+          {
+            currentPage - 1 > 3 && <li><span className="pagination-ellipsis">&hellip;</span></li>
+          }
+          {
+            middlePage.map(page => {
+              return <li key={page}><a onClick={() => onPagination(page)} className={`pagination-link ${currentPage === page?'is-current':''}`}>{page}</a></li>
+            })
+          }
+          {
+            pageIndex - currentPage > 3 && <li><span className="pagination-ellipsis">&hellip;</span></li>
+          }
+          <li><a onClick={() => onPagination(pageIndex)} className={`pagination-link ${currentPage === pageIndex?'is-current':''}`}>{pageIndex}</a></li>
         </ul>
       </nav>
     </div>

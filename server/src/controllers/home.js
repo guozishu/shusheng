@@ -24,7 +24,7 @@ class Home {
         const { name,fields } = needTotalPage;
         const sql = `select ${fields} from ${name}`
         const res = await conn.query(sql);
-        result.total = res;
+        result.total = Array.isArray(res)? res[0]: res;
       }
       const sql = `select ${fields} from ${name} where 1 = 1 ${condition?`and ${condition}`:''}`
       const res = await conn.query(sql);
