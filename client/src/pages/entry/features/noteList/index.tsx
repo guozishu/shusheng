@@ -6,9 +6,11 @@ export default function FirstMenu(props) {
   const [notes, setNotes] = useState([]);
   const [colors] = useState(['primary','link','info','success','warning','danger'])
 
-  const [pageIndex,setPageIndex] = useState(0)
-  const [currentPage, setCurrentPage] = useState(1);
+  const [pageIndex,setPageIndex] = useState<number>(0)
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [middlePage,setMiddlePage] = useState<number[]>([]);
+
+  const [keyword,setKeyword] = useState<string>('')
 
   const request = function (params, callback) {
     fetch(params.url, {
@@ -93,6 +95,18 @@ export default function FirstMenu(props) {
 
   return (
     <div className="container">
+      <div className="notification is-success is-light">
+        <div className="block">
+          <div className="field is-grouped">
+            <div className="control is-expanded">
+              <input className="input" value={keyword} onChange={e=>setKeyword(e.target.value)} type="text" placeholder="关键字" />
+            </div>
+            <div className="control">
+              <button className="button is-primary">搜索</button>
+            </div>
+          </div>
+        </div>
+      </div>
       {
         notes.map((item, index) => {
           const {id, title, name} = item
