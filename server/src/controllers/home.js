@@ -19,7 +19,7 @@ class Home {
     }
     if (isLogin) {
       const params = ctx.request.body;
-      let { name,fields,condition,needTotalPage,supplement,mappingProperty } = params;
+      let { name,fields,condition,needTotalPage,supplement,mappingProperty,searchKeyword } = params;
       if (mappingProperty) {
         name = constant[mappingProperty][name]
         fields = constant[mappingProperty][fields]
@@ -31,13 +31,17 @@ class Home {
         }
       }
       const conn = await connection();
+      let likeQuery = ''
+      if (searchKeyword && searchKeyword.keyword) {
+        likeQuery = ` AND ${searchKeyword.fields} LIKE '%${searchKeyword.keyword}%' `
+      }
       if (needTotalPage && needTotalPage.isPagination) {
         const { name,fields } = needTotalPage;
-        const sql = `select ${fields} from ${name}`
+        const sql = `select ${fields} from ${name} where 1=1 ${likeQuery}`
         const res = await conn.query(sql);
         result.total = Array.isArray(res)? res[0]: res;
       }
-      const sql = `select ${fields} from ${name} where 1 = 1 ${condition?`and ${condition}`:''}`
+      const sql = `select ${fields} from ${name} where 1 = 1 ${likeQuery} ${condition?`and ${condition}`:''}`
       const res = await conn.query(sql);
       result.code = 0;
       result.data = res;

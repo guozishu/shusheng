@@ -27,13 +27,17 @@ export default function FirstMenu(props) {
   }
 
   const queryNoteList = args => {
-    const { pageSize, pageIndex, isPagination, isInit } = args;
+    const { pageSize, pageIndex, isPagination, isInit, defaultPage } = args;
     let params = {
       name: 'glgnar0i59g',
       fields: 'iclwhd7t1bp',
       condition: 'psopt2djb1b',
       supplement:`${(pageIndex - 1) * pageSize},${pageSize}`,
-      mappingProperty: 'queryArticleList'
+      mappingProperty: 'queryArticleList',
+      searchKeyword: {
+        keyword: keyword.trim(),
+        fields: 'title'
+      }
     }
     params = {
       ...{
@@ -55,7 +59,7 @@ export default function FirstMenu(props) {
           const pageIndex = Math.ceil(res.total.totalPage/12)
           setPageIndex(pageIndex);
           const middlePage: number[] = []
-          let calculatePage = currentPage;
+          let calculatePage = defaultPage || currentPage;
           while(calculatePage < pageIndex - 1) {
             middlePage.push(++calculatePage)
           }
@@ -72,7 +76,7 @@ export default function FirstMenu(props) {
   const onSearchArticle = () => {
     setCurrentPage(1);
     setTimeout(() => {
-      queryNoteList({ pageSize: 12, pageIndex: 1, isPagination: true,isInit: false })
+      queryNoteList({ pageSize: 12, pageIndex: 1, isPagination: true,isInit: true, defaultPage: 1 })
     }, 300);
   }
 
@@ -100,12 +104,14 @@ export default function FirstMenu(props) {
       }
       setMiddlePage(middlePage.sort((a,b)=>a-b));
     }
-    queryNoteList({ 
-      pageSize: 12, 
-      pageIndex: page, 
-      isPagination: false,
-      isInit: false
-     })
+    if (page > 0 && page <= pageIndex) {
+      queryNoteList({ 
+        pageSize: 12, 
+        pageIndex: page, 
+        isPagination: false,
+        isInit: false
+       })
+    }
   }
 
   return (
@@ -141,7 +147,9 @@ export default function FirstMenu(props) {
         <a onClick={() => onPagination(currentPage-1)} className="pagination-previous">上一页</a>
         <a onClick={() => onPagination(currentPage+1)} className="pagination-next">下一页</a>
         <ul className="pagination-list">
-          <li><a onClick={() => onPagination(1)} className={`pagination-link ${currentPage === 1?'is-current':''}`}>1</a></li>
+          {
+           pageIndex !==0 && <li><a onClick={() => onPagination(1)} className={`pagination-link ${currentPage === 1?'is-current':''}`}>1</a></li>
+          }
           {
             currentPage - 1 > 3 && <li><span className="pagination-ellipsis">&hellip;</span></li>
           }
@@ -153,7 +161,9 @@ export default function FirstMenu(props) {
           {
             pageIndex - currentPage > 3 && <li><span className="pagination-ellipsis">&hellip;</span></li>
           }
-          <li><a onClick={() => onPagination(pageIndex)} className={`pagination-link ${currentPage === pageIndex?'is-current':''}`}>{pageIndex}</a></li>
+          {
+            ![1,0].includes(pageIndex) && <li><a onClick={() => onPagination(pageIndex)} className={`pagination-link ${currentPage === pageIndex?'is-current':''}`}>{pageIndex}</a></li>
+          }
         </ul>
       </nav>
     </div>
