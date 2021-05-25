@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './index.css';
 
 export default function FirstMenu(props) {
@@ -27,23 +27,23 @@ export default function FirstMenu(props) {
   }
 
   const queryNoteList = args => {
-    const { pageSize, pageIndex, isPagination } = args;
+    const { pageSize, pageIndex, isPagination, isInit } = args;
     let params = {
-      name: 'articleInfo LEFT JOIN articleCategory ON articleInfo.cate_Id=articleCategory.cust_id',
-      fields: 'articleInfo.id,title,articleCategory.`name`',
-      condition: `isOnline=1 ORDER BY articleInfo.id LIMIT ${pageIndex},${pageSize}`
+      name: 'glgnar0i59g',
+      fields: 'iclwhd7t1bp',
+      condition: 'psopt2djb1b',
+      supplement:`${(pageIndex - 1) * pageSize},${pageSize}`,
+      mappingProperty: 'queryArticleList'
     }
-    if (isPagination) {
-      params = {
-        ...{
-          needTotalPage: {
-            isPagination: true,
-            name: 'articleInfo',
-            fields: 'COUNT(id) as totalPage'
-          }
-        },
-        ... params
-      }
+    params = {
+      ...{
+        needTotalPage: {
+          isPagination,
+          name: 'd3x3bpbpog8',
+          fields: '7kawqvnb61v'
+        }
+      },
+      ... params
     }
     request({
       url: '/query',
@@ -51,21 +51,30 @@ export default function FirstMenu(props) {
     }, function (res) {
       if (!res.code) {
         setNotes(res.data);
-        const pageIndex = Math.ceil(res.total.totalPage/12)
-        setPageIndex(pageIndex);
-        const middlePage: number[] = []
-        let calculatePage = currentPage;
-        while(calculatePage < pageIndex - 1) {
-          middlePage.push(++calculatePage)
+        if (isInit) {
+          const pageIndex = Math.ceil(res.total.totalPage/12)
+          setPageIndex(pageIndex);
+          const middlePage: number[] = []
+          let calculatePage = currentPage;
+          while(calculatePage < pageIndex - 1) {
+            middlePage.push(++calculatePage)
+          }
+          setMiddlePage(middlePage);
         }
-        setMiddlePage(middlePage);
       }
     })
   }
 
   useEffect(() => {
-    queryNoteList({ pageSize: 12, pageIndex: 0, isPagination: true })
+    queryNoteList({ pageSize: 12, pageIndex: 1, isPagination: true,isInit: true })
   }, [])
+
+  const onSearchArticle = () => {
+    setCurrentPage(1);
+    setTimeout(() => {
+      queryNoteList({ pageSize: 12, pageIndex: 1, isPagination: true,isInit: false })
+    }, 300);
+  }
 
   const onPagination = page => {
     if (page > 0 && page <= pageIndex) {
@@ -91,6 +100,12 @@ export default function FirstMenu(props) {
       }
       setMiddlePage(middlePage.sort((a,b)=>a-b));
     }
+    queryNoteList({ 
+      pageSize: 12, 
+      pageIndex: page, 
+      isPagination: false,
+      isInit: false
+     })
   }
 
   return (
@@ -102,7 +117,7 @@ export default function FirstMenu(props) {
               <input className="input" value={keyword} onChange={e=>setKeyword(e.target.value)} type="text" placeholder="关键字" />
             </div>
             <div className="control">
-              <button className="button is-primary">搜索</button>
+              <button onClick={onSearchArticle} className="button is-primary">搜索</button>
             </div>
           </div>
         </div>

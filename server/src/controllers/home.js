@@ -4,6 +4,7 @@ const {
   guidStrList,
   session
 } = require('../lib/common/common');
+const constant = require('../constants/transation')
 const Pass = require('./pass')
 
 class Home {
@@ -18,7 +19,17 @@ class Home {
     }
     if (isLogin) {
       const params = ctx.request.body;
-      const { name,fields,condition,needTotalPage } = params;
+      let { name,fields,condition,needTotalPage,supplement,mappingProperty } = params;
+      if (mappingProperty) {
+        name = constant[mappingProperty][name]
+        fields = constant[mappingProperty][fields]
+        condition = `${constant[mappingProperty][condition]} ${supplement}`
+        needTotalPage = {
+          ...needTotalPage,
+          name: constant[mappingProperty][needTotalPage.name],
+          fields: constant[mappingProperty][needTotalPage.fields]
+        }
+      }
       const conn = await connection();
       if (needTotalPage && needTotalPage.isPagination) {
         const { name,fields } = needTotalPage;
