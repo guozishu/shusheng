@@ -13,9 +13,9 @@ export default function Note() {
   const currentSlider = constants.FACE_SLIDERS[id.toUpperCase()]
   const menulist = { 
     first_menu: () => React.lazy(() => import('../firstMenu/index')),  
-    creare_notes: () => React.lazy(() => import('../createNotes/index')), 
+    creare_notes: () => React.lazy(() => import('../createNote/index')), 
     note_list: () => React.lazy(() => import('../noteList/index')), 
-    update_notes: () => React.lazy(() => import('../firstMenu/index')), 
+    update_notes: () => React.lazy(() => import('../updateNote/index')), 
     others: () => React.lazy(() => import('../firstMenu/index'))
   }
   const Menu = menulist[id]()
