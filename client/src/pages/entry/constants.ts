@@ -3,13 +3,13 @@ export default {
     FIRST_MENU: {
       DISPLAY_NAME: '一级菜单',
     },
-    CREARE_NOTES: {
+    CREARE_NOTE: {
       DISPLAY_NAME: '新建笔记',
     },
     NOTE_LIST: {
       DISPLAY_NAME: '笔记列表',
     },
-    UPDATE_NOTES: {
+    UPDATE_NOTE: {
       DISPLAY_NAME: '更新笔记',
     },
     OTHERS: {

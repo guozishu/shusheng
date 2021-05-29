@@ -4,7 +4,11 @@ module.exports = [
     controller: "index.entry"
   },
   {
-    match: "/creare_notes",
+    match: "/creare_note",
+    controller: "index.entry"
+  },
+  {
+    match: "/update_note",
     controller: "index.entry"
   },
   {
