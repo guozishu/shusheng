@@ -4,13 +4,8 @@ import './index.css';
 export default function Index(props) {
   const {isOnline, setIsOnline} = props.data
 
-
-  const isShowOnline = e => {
-    setIsOnline(e.target.checked)
-  }
-
   return <label className="checkbox">
-  <input type="checkbox" checked={isOnline} onChange={isShowOnline} />
+  <input type="checkbox" checked={isOnline} onChange={e => setIsOnline(e.target.checked)} />
   是否发布
 </label>
 }

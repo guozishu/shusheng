@@ -42,9 +42,9 @@ export default function Index(props) {
       }
     }, function (res) {
       if (!res.code) {
-      setSelectedCategory(res.data[0])
-      setCategory(res.data)
-      querySecondMenu(res.data[0].id)
+        setSelectedCategory(res.data[0])
+        setCategory(res.data)
+        querySecondMenu(res.data[0].id)
       }
     })
   }
@@ -70,6 +70,9 @@ export default function Index(props) {
 
   useEffect(() => {
     queryFirstMenu();
+    return () => {
+      queryFirstMenu();
+    }
   }, [])
 
   const choiceCategory = item => {

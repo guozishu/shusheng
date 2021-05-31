@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './index.css';
 import Editor from './components/editor/index';
 import Select from './components/select/index';
@@ -44,6 +44,7 @@ export default function LeftMenu(props) {
   const handInMenu = function () {
     const { id } = selectedCategory
     const { name, id: secondId } = selectedSecondMenu
+    const cate_Id = Date.now().toString()
     request({
       url: '/transaction',
       params: { 
@@ -51,9 +52,9 @@ export default function LeftMenu(props) {
             {
               name:"articleInfo",
                 fields:  {
-                  cate_id: 1,
+                  cate_id: cate_Id,
                   isOnline: Number(isOnline),
-                  title: Date.now().toString(),
+                  title: createTitle,
                   content: encodeURIComponent(note)
                 }
             },
@@ -62,7 +63,7 @@ export default function LeftMenu(props) {
               fields:  {
                 pid: id,
                 name:name,
-                cust_id: secondId.toString()
+                cust_id: cate_Id
               }
             }
         ]
