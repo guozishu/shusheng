@@ -31,3 +31,29 @@
 .level * {
   margin-right: 10px;
 }
+
+
+.content {
+  margin: 0 auto;
+  padding: 2rem 2.5rem;
+}
+
+.for-container .for-editor .for-editor-preview {
+  border: none;
+}
+.for-container .for-editor .for-panel .for-preview,
+.content blockquote {
+  background-color: #fff;
+}
+.for-container .for-editor .for-editor-preview .for-markdown-preview h1,
+.for-container .for-editor .for-editor-preview .for-markdown-preview h2, 
+.for-container .for-editor .for-editor-preview .for-markdown-preview h3, 
+.for-container .for-editor .for-editor-preview .for-markdown-preview h4, 
+.for-container .for-editor .for-editor-preview .for-markdown-preview h5, 
+.for-container .for-editor .for-editor-preview .for-markdown-preview h6 {
+  line-height: 2;
+}
+
+.for-container .for-editor .for-editor-edit-hidden {
+  display: none;
+}

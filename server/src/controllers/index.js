@@ -61,7 +61,6 @@ class Index {
       data: 'failed',
       code: -1
     };
-    console.log(time)
     if (user === 'wanglong' && pwd === `guozishu${time}`) {
       const token = guidStrList(5);
       session.set('token', token, 21600);

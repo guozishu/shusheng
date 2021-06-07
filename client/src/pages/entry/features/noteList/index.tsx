@@ -1,4 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import {
+  Link
+} from "react-router-dom";
 import './index.css';
 
 export default function FirstMenu(props) {
@@ -131,16 +134,18 @@ export default function FirstMenu(props) {
       {
         notes.map((item, index) => {
           const {id, title, name} = item
-          return <section key={id} className={`hero is-${colors[index%6]}`}>
-          <div className="hero-body">
-            <p className="title">
-              {title}
-            </p>
-            <p className="subtitle">
-              {name}
-            </p>
-          </div>
-        </section>
+          return <Link to={`update_note?id=${id}`} key={id}>
+            <section className={`hero is-${colors[index%6]}`}>
+            <div className="hero-body">
+              <p className="title">
+                {title}
+              </p>
+              <p className="subtitle">
+                {name}
+              </p>
+            </div>
+          </section>
+        </Link>
         })
       }
       <nav className="pagination is-centered">
