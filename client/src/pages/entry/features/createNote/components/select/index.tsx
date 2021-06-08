@@ -16,21 +16,20 @@ export default function Index(props) {
     setShowDropDown,
     secondMenu, setSecondMenu,
     selectedSecondMenu,setSelectedSecondMenu,
-    showSecondMenu,setShowSecondMenu,
+    showSecondMenu,setShowSecondMenu,query
   } = props.data
 
-  const request = function (params, callback) {
-    fetch(params.url, {
+  const id = query && query.get('id')
+
+  const request = function (params) {
+    return fetch(params.url, {
       body: JSON.stringify(params.params),
       headers: {
         'content-type': 'application/json'
       },
       method: 'POST'
     })
-      .then(response => response.json())
-      .then(res => {
-        callback(res)
-      })
+    .then(response => response.json())
   }
 
   const queryFirstMenu = () => {
@@ -40,11 +39,13 @@ export default function Index(props) {
         name: 'articleType',
         fields: 'id,name'
       }
-    }, function (res) {
+    }).then(function (res) {
       if (!res.code) {
-        setSelectedCategory(res.data[0])
         setCategory(res.data)
-        querySecondMenu(res.data[0].id)
+        if (!id) {
+          setSelectedCategory(res.data[0])
+          querySecondMenu(res.data[0].id)
+        }
       }
     })
   }
@@ -57,7 +58,7 @@ export default function Index(props) {
         fields: 'id,name,pid,cust_id',
         condition: `pid=${pid}`
       }
-    }, function (res) {
+    }).then(function (res) {
       if (!res.code) {
         setSelectedSecondMenu(res.data[0])
         setSecondMenu(res.data)
@@ -70,9 +71,6 @@ export default function Index(props) {
 
   useEffect(() => {
     queryFirstMenu();
-    return () => {
-      queryFirstMenu();
-    }
   }, [])
 
   const choiceCategory = item => {

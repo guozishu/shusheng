@@ -28,7 +28,9 @@ export default function LeftMenu(props) {
   const [selectedSecondMenu,setSelectedSecondMenu] = useState<Category>({id:-1,name:''});
   const [showSecondMenu,setShowSecondMenu] = useState('')
 
-  const [note,setNote] = React.useState("## 更新笔记")
+  const [note,setNote] = useState("## 更新笔记")
+
+  const [noteId, setNoteId] = useState(-1)
 
   const [isOnline, setIsOnline] = useState(false);
 
@@ -50,14 +52,35 @@ export default function LeftMenu(props) {
       url: '/select',
       params: {
         name: 'articleInfo',
-        fields: 'id,cate_Id,title,content',
+        fields: 'id,cate_Id,title,content,isOnline',
         condition: `id=${id}`
       }
     })
     .then(function (res) {
       if (!res.code) {
         setNote(decodeURIComponent(res.data[0].content));
+        setNoteId(res.data[0].id)
         queryCate(res.data[0].cate_Id);
+        setCreateTitle(res.data[0].title)
+        setIsOnline(res.data[0].isOnline)
+      }
+    })
+  }
+
+  const queryAllCate = pid => {
+    request({
+      url: '/select',
+      params: {
+        name: 'articleCategory',
+        fields: 'id,name,pid,cust_id',
+        condition: `pid=${pid}`
+      }
+    }).then(function (res) {
+      if (!res.code) {
+        setSecondMenu(res.data)
+        if (res.data.length) {
+          setShowSecondMenu('is-hoverable')
+        }
       }
     })
   }
@@ -67,13 +90,31 @@ export default function LeftMenu(props) {
       url: '/select',
       params: {
         name: 'articleCategory',
-        fields: 'iid,name,pid',
+        fields: 'id,name,pid',
         condition: `cust_id=${cust_id}`
       }
     })
     .then(function (res) {
       if (!res.code) {
-        
+        setSelectedSecondMenu(res.data[0])
+        queryType(res.data[0].pid)
+        queryAllCate(res.data[0].pid)
+      }
+    })
+  }
+
+  const queryType = pid => {
+    request({
+      url: '/select',
+      params: {
+        name: 'articleType',
+        fields: 'id,name',
+        condition: `id=${pid}`
+      }
+    })
+    .then(function (res) {
+      if (!res.code) {
+        setSelectedCategory(res.data[0])
       }
     })
   }
@@ -85,21 +126,27 @@ export default function LeftMenu(props) {
     }
   },[])
 
-  const handInMenu = function () {
+  const handInMenu = () => {
+    if (!query.get('id')) {
+      return ;
+    }
     const { id } = selectedCategory
     const { name, id: secondId } = selectedSecondMenu
+
     request({
       url: '/transaction',
       params: { 
         multipleTable: [
             {
               name:"articleInfo",
-                fields:  {
-                  cate_id: 1,
-                  isOnline: Number(isOnline),
-                  title: Date.now().toString(),
-                  content: encodeURIComponent(note)
-                }
+              fields:  {
+                cate_id: secondId,
+                isOnline: Number(isOnline),
+                title: createTitle,
+                content: encodeURIComponent(note)
+              },
+              condition: `id=${noteId}`,
+              dml: 'update'
             },
             {
               name:"articleCategory",
@@ -107,10 +154,14 @@ export default function LeftMenu(props) {
                 pid: id,
                 name:name,
                 cust_id: secondId.toString()
-              }
+              },
+              condition: `id=${secondId}`,
+              dml:'update'
             }
         ]
     }
+    }).then(res => {
+
     })
     
   }
@@ -157,7 +208,7 @@ export default function LeftMenu(props) {
         <div className="block">
           <div className="field is-grouped">
             <div className="control">
-              <button className="button is-primary" onClick={handInMenu} >新增</button>
+              <button className="button is-primary" onClick={handInMenu} >更新笔记</button>
             </div>
           </div>
         </div>

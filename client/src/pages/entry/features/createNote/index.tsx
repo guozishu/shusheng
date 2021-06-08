@@ -126,7 +126,7 @@ export default function LeftMenu(props) {
         <div className="block">
           <div className="field is-grouped">
             <div className="control">
-              <button className="button is-primary" onClick={handInMenu} >新增</button>
+              <button className="button is-primary" onClick={handInMenu} >新增笔记</button>
             </div>
           </div>
         </div>
