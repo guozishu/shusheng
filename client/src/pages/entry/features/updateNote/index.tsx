@@ -28,6 +28,8 @@ export default function LeftMenu(props) {
   const [selectedSecondMenu,setSelectedSecondMenu] = useState<Category>({id:-1,name:''});
   const [showSecondMenu,setShowSecondMenu] = useState('')
 
+  const [customSecondMenu,setCustomSecondMenu] = useState<Category>({id:-1,name:''});
+
   const [note,setNote] = useState("## 更新笔记")
 
   const [noteId, setNoteId] = useState(-1)
@@ -145,7 +147,9 @@ export default function LeftMenu(props) {
                 title: createTitle,
                 content: encodeURIComponent(note)
               },
-              condition: `id=${noteId}`,
+              condition: {
+                id: noteId
+              },
               dml: 'update'
             },
             {
@@ -155,13 +159,19 @@ export default function LeftMenu(props) {
                 name:name,
                 cust_id: secondId.toString()
               },
-              condition: `id=${secondId}`,
+              condition: {
+                id: secondId
+              },
               dml:'update'
             }
         ]
     }
     }).then(res => {
-
+      let str = '更新失败'
+      if (!res.code) {
+        str = '更新成功'
+      }
+      alert(str)
     })
     
   }
@@ -191,6 +201,7 @@ export default function LeftMenu(props) {
             setSelectedSecondMenu,
             showSecondMenu,
             setShowSecondMenu,
+            setCustomSecondMenu,
             query
           }
         } />

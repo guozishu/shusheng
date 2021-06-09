@@ -6,7 +6,7 @@ export default function Index(props) {
     secondMenu, setSecondMenu,
     selectedSecondMenu,setSelectedSecondMenu,
     showSecondMenu,setShowSecondMenu,
-    setCustomSecondMenu
+    setCustomSecondMenu,query
   } = props.data
 
   const choiceSecondCategory = item => {
@@ -18,10 +18,17 @@ export default function Index(props) {
   }
 
   const inputOnChange = e => {
-    setCustomSecondMenu({
-      id: Date.now().toString(),
-      name: e.target.value
-    })
+    if (query && query.get('id')) {
+      setSelectedSecondMenu({
+        id: selectedSecondMenu.id,
+        name: e.target.value
+      })
+    } else {
+      setCustomSecondMenu({
+        id: Date.now().toString(),
+        name: e.target.value
+      })
+    }
   }
 
   return (

@@ -15,8 +15,10 @@
                 <input class="input is-rounded is-small" type="text" />
             </a>
             {% for item in firstMenus %}
-                <a class="navbar-item" data-id={{item.id}}>
-                    <span>{{item.name}}</span>
+                <a href='/{{item.routeName}}/{{item.id}}' class="navbar-item" data-id={{item.id}}>
+                    <span class='{{ "active" if item.isActive else "" }}'>
+                        {{item.name}}
+                    </span>
                 </a>
             {% endfor %}
 
@@ -26,7 +28,7 @@
                 </a>
                 <div class="navbar-dropdown">
                     {% for item in secondMenus %}
-                        <a class="navbar-item" data-id={{item.id}}>
+                        <a href='/{{item.routeName}}/{{item.id}}' class="navbar-item" data-id={{item.id}}>
                             {{item.name}}
                         </a>
                     {% endfor %}

@@ -1,5 +1,6 @@
 const home = require('./home');
 const spa = require('./spa');
+const menu = require('./menu');
 
 module.exports = [
   {
@@ -42,5 +43,10 @@ module.exports = [
     method:'post',
     match:'/select',
     controller: 'index.select'
+  },
+  {
+    method:'post',
+    match:'/queryData',
+    controller: 'index.queryData'
   }
-].concat(home,spa);
+].concat(home,spa,menu);

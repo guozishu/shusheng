@@ -1,3 +1,5 @@
+const { URL } = require('url');
+
 /**
  * 加载器函数
  * @param {String} filepath 路径
@@ -17,6 +19,12 @@ function loadFile (filepath) {
   }
 }
 
+const getPathNameParams = (url, num = 1) => {
+  const pathName = new URL(url).pathname
+  return pathName.split('/').slice(-num)
+}
+
 module.exports = {
-  loadFile
+  loadFile,
+  getPathNameParams
 }

@@ -21,13 +21,15 @@ class Home {
       const params = ctx.request.body;
       let { name,fields,condition,needTotalPage,supplement,mappingProperty,searchKeyword } = params;
       if (mappingProperty) {
-        name = constant[mappingProperty][name]
-        fields = constant[mappingProperty][fields]
-        condition = `${constant[mappingProperty][condition]} ${supplement}`
-        needTotalPage = {
-          ...needTotalPage,
-          name: constant[mappingProperty][needTotalPage.name],
-          fields: constant[mappingProperty][needTotalPage.fields]
+        name = constant[mappingProperty][name];
+        fields = constant[mappingProperty][fields];
+        condition = `${constant[mappingProperty][condition]} ${supplement}`;
+        if (needTotalPage) {
+          needTotalPage = {
+            ...needTotalPage,
+            name: constant[mappingProperty][needTotalPage.name],
+            fields: constant[mappingProperty][needTotalPage.fields]
+          }
         }
       }
       const conn = await connection();
@@ -126,11 +128,24 @@ class Home {
       const result = await conn.beginTransaction()
         .then(() => {
           for (const [index, item] of multipleTable.entries()) {
-            const { name, fields } = item;
-            const keys = Object.keys(fields),values = Object.values(fields);
-            let columnMames = '?,'.repeat(keys.length);
-            columnMames = `(${columnMames.slice(0, columnMames.length - 1)})`;
-            const sql = `INSERT INTO ${name} (${keys.join(', ')}) value ${columnMames}`;
+            const { name, fields, condition, dml } = item;
+            let sql = '',values = [],keys = [];
+            switch(dml) {
+              case 'update':
+                keys = Object.keys(fields);
+                values = Object.values(fields);
+                let columnNames = `${keys.join(' = ?,')} = ? WHERE ${Object.keys(condition)} = ?`;
+                values = values.concat(Object.values(condition))
+                sql = `UPDATE ${name} SET ${columnNames}`;
+                break;
+              default:
+                keys = Object.keys(fields);
+                values = Object.values(fields);
+                let columnMames = '?,'.repeat(keys.length);
+                columnMames = `(${columnMames.slice(0, columnMames.length - 1)})`;
+                sql = `INSERT INTO ${name} (${keys.join(', ')}) value ${columnMames}`;    
+               break;
+            }
             if (index !== multipleTable.length) {
               conn.query(sql, values)
             } else {

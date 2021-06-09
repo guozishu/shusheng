@@ -4,6 +4,7 @@ const {
   guidStrList,
   session
 } = require('../lib/common/common');
+const constant = require('../constants/transation')
 
 class Index {
   async index() {
@@ -89,6 +90,49 @@ class Index {
       code: 0,
       data: res
     }
+    await ctx.renderJson(result)
+  }
+  async queryData(scope) {
+    const ctx = this;
+    // const pass = new Pass();
+    // const {isLogin} = await pass.pass.bind(ctx)(scope)
+    let result = {
+      code: -1,
+      data: [],
+      message: 'not login'
+    }
+    // if (isLogin) {
+      const params = ctx.request.body;
+      let { name,fields,condition,needTotalPage,supplement,mappingProperty,searchKeyword } = params;
+      if (mappingProperty) {
+        name = constant[mappingProperty][name];
+        fields = constant[mappingProperty][fields];
+        condition = `${constant[mappingProperty][condition]} ${supplement}`;
+        if (needTotalPage) {
+          needTotalPage = {
+            ...needTotalPage,
+            name: constant[mappingProperty][needTotalPage.name],
+            fields: constant[mappingProperty][needTotalPage.fields]
+          }
+        }
+      }
+      const conn = await connection();
+      let likeQuery = ''
+      if (searchKeyword && searchKeyword.keyword) {
+        likeQuery = ` AND ${searchKeyword.fields} LIKE '%${searchKeyword.keyword}%' `
+      }
+      if (needTotalPage && needTotalPage.isPagination) {
+        const { name,fields } = needTotalPage;
+        const sql = `select ${fields} from ${name} where 1=1 ${likeQuery}`
+        const res = await conn.query(sql);
+        result.total = Array.isArray(res)? res[0]: res;
+      }
+      const sql = `select ${fields} from ${name} where 1 = 1 ${likeQuery} ${condition?`and ${condition}`:''}`
+      const res = await conn.query(sql);
+      result.code = 0;
+      result.data = res;
+      result.message = 'success';
+    //}
     await ctx.renderJson(result)
   }
 }

@@ -7,6 +7,10 @@
   position: relative;
 }
 
+.column__name.is-danger{
+  background-color: #f14668;
+}
+
 .column__name .delete {
   right: .1rem;
     position: absolute;
