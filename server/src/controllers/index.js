@@ -5,6 +5,7 @@ const {
   session
 } = require('../lib/common/common');
 const constant = require('../constants/transation')
+const master = require('./common/index')
 
 class Index {
   async index() {
@@ -13,10 +14,12 @@ class Index {
   }
   async blog(scope) {
     const ctx = this;
+    await master(scope,ctx)
     await ctx.render('blog')
   }
   async entry(scope) {
     const ctx = this;
+    await master(scope,ctx)
     scope.isLogin = 0
     const sessionToken = session.get('token');
     const cookieToken=ctx.cookies.get('token');

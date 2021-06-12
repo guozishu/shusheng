@@ -29,9 +29,7 @@ module.exports = (routes) => {
 
         args.push((ctx, next) => {
           ctx.state.controller = routeList
-          return next().then(() => {
-            return classFunction.bind(ctx)(ctx.state.scope)
-          });
+          return classFunction.bind(ctx)(ctx.state.scope)
         });
 
         if (typeof middleware === "function") {

@@ -20,11 +20,13 @@ app.use(logger());
 app.use(error());
 app.use(static());
 app.use(bodyParser());
-app.use(router(loadFile('../../routes/index.js')));
-app.use(render());
 app.use(renderJson());
+app.use(render());
+app.use(router(loadFile('../../routes/index.js')));
 app.use(compress());
 app.use(helmet());
 app.use(cacheControl({maxAge:120}));
+
+
 
 app.listen(3000);
