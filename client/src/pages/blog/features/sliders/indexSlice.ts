@@ -9,7 +9,6 @@ const initialState = {
     menuList: {}
 } as Menu
 
-
 export const toggleName = createSlice({
     name: 'getMenuData',
     initialState,
