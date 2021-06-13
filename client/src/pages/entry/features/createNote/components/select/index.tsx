@@ -86,7 +86,7 @@ export default function Index(props) {
     <div className={`dropdown ${showDropDown}`}>
     <div className="dropdown-trigger first__menu">
       <div className="button">
-        <span>{selectedCategory.name}</span>
+        <span>{selectedCategory && selectedCategory.name}</span>
         <span className="icon is-small">
           <i className="fas icon-angle-down"></i>
         </span>
