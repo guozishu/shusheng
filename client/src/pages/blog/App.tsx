@@ -4,13 +4,20 @@ import { Main } from './features/main';
 import './App.css';
 
 function App() {
+  const [note,setNote] = React.useState("")
   return (
     <div className="app">
       <aside className="sidebar">
-        <Sliders />
+        <Sliders data={
+          {setNote}
+        } />
       </aside>
       <main className="page">
-        <Main />
+        <Main data={
+          {
+            note
+          }
+        } />
       </main>
     </div>
   );

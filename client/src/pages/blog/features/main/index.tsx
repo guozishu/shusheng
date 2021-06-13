@@ -1,12 +1,11 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import Editor from '@cuiko/for-editor'
 import {Home} from '../components/home/index'
+import {Editor} from '../components/editor/index'
 
 import './Index.css'
 
-export function Main() {
-    const [value,setValue] = React.useState("## JavaScript中的数组是一种有序的数据结构")
+export function Main(props) {
+    const {note} = props.data
 
     React.useEffect(() => {
 
@@ -14,7 +13,9 @@ export function Main() {
 
     return (
         <div className="content">
-            <Home />
+            {
+                note? <Editor data={{note}} />: <Home />
+            }
         </div>
     );
 }
