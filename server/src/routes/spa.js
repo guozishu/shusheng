@@ -18,5 +18,9 @@ module.exports = [
   {
     match: "/first_menu",
     controller: "index.entry"
+  },
+  {
+    match: "/sign_out",
+    controller: "index.entry"
   }
 ];

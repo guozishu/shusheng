@@ -6,6 +6,7 @@ const {
 } = require('../lib/common/common');
 const constant = require('../constants/transation')
 const master = require('./common/index')
+const Pass = require('./pass')
 
 class Index {
   async index() {
@@ -136,6 +137,25 @@ class Index {
       result.data = res;
       result.message = 'success';
     //}
+    await ctx.renderJson(result)
+  }
+  async logout(scope){
+    const ctx = this;
+    const pass = new Pass();
+    const {isLogin} = await pass.pass.bind(ctx)(scope)
+    let result = {
+      code: -1,
+      message: 'logout failed'
+    }
+    if (isLogin) { 
+      session.del('token');
+      ctx.cookies.set("token", '', {
+        domain: ctx.hostname,
+        path: '/',
+        maxAge: -1
+      });
+      result = {code:0, message: 'logout success'}
+    }
     await ctx.renderJson(result)
   }
 }

@@ -14,6 +14,9 @@ export default {
     },
     OTHERS: {
       DISPLAY_NAME: '其他',
+    },
+    SIGN_OUT: {
+      DISPLAY_NAME: '退出',
     }
   }
 }

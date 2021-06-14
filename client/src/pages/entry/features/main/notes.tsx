@@ -16,7 +16,17 @@ export default function Note() {
     creare_note: () => React.lazy(() => import('../createNote/index')), 
     note_list: () => React.lazy(() => import('../noteList/index')), 
     update_note: () => React.lazy(() => import('../updateNote/index')), 
-    others: () => React.lazy(() => import('../firstMenu/index'))
+    others: () => React.lazy(() => import('../firstMenu/index')),
+    sign_out: () => {
+      fetch('/logout')
+      .then(response => response.json())
+      .then(res => {
+        if (!res.code) {
+          window.location.href = '/face';
+        }
+        
+      })
+    },
   }
   const Menu = menulist[id]()
   return (

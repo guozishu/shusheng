@@ -48,5 +48,9 @@ module.exports = [
     method:'post',
     match:'/queryData',
     controller: 'index.queryData'
+  },
+  {
+    match: '/logout',
+    controller:'index.logout'
   }
 ].concat(home,spa,menu);
