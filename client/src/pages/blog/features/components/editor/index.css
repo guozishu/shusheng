@@ -1,0 +1,25 @@
+.for-container{
+    border-radius: 0!important;
+}
+
+.for-container .for-panel {
+    min-height: 600px;
+}
+/* .for-container h1 {
+    font-size: 200%;
+}
+.for-container h2 {
+    font-size: 150%;
+}
+.for-container h3 {
+    font-size: 117%;
+}
+.for-container h4 {
+    font-size: 100%;
+}
+.for-container pre {
+    font-size: medium!important;
+} */
+.for-container .for-editor-edit {
+    display: none;
+}

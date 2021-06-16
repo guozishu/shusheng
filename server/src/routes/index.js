@@ -1,3 +1,7 @@
+const home = require('./home');
+const spa = require('./spa');
+const menu = require('./menu');
+
 module.exports = [
   {
     match: "/",
@@ -24,5 +28,29 @@ module.exports = [
     method: "post",
     match: "/home",
     controller: "index.home"
+  },
+  {
+    method: "post",
+    match: "/login",
+    controller: "index.login"
+  },
+  {
+    method: 'post',
+    match: '/pass',
+    controller: "index.pass"
+  },
+  {
+    method:'post',
+    match:'/select',
+    controller: 'index.select'
+  },
+  {
+    method:'post',
+    match:'/queryData',
+    controller: 'index.queryData'
+  },
+  {
+    match: '/logout',
+    controller:'index.logout'
   }
-];
+].concat(home,spa,menu);

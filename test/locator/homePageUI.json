@@ -10,5 +10,9 @@
   "homeButtonDec": {
     "locator": ".dec",
     "type": "css"
+  },
+  "hoverButton": {
+    "locator": ".is-rounded",
+    "type": "css"
   }
 }

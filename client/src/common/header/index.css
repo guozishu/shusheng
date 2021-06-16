@@ -12,6 +12,11 @@
     font-size: 18px;
     font-weight: 600;
 }
+.navbar-other {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
 .navbar-item {
     font-weight: 500;
     color: #2c3e50;
@@ -35,7 +40,7 @@ a.navbar-item:hover,a.navbar-link:hover,a.navbar-item:focus {
 
 @media screen and (min-width: 1024px) {
     .navbar-dropdown { 
-        margin-top: 3px;
+        margin-top: 1px;
         border-top: 2px solid #46bd87;
     }
 }
@@ -55,8 +60,6 @@ a.navbar-item:hover,a.navbar-link:hover,a.navbar-item:focus {
     line-height: 2rem;
     padding-left: 30px!important;
     outline: none;
-    -webkit-transition: all .2s ease;
-    transition: all .2s ease;
     background: #fff url(../images/search.svg) .6rem .5rem no-repeat;
     background-size: 1rem;
     box-shadow: none;
@@ -65,5 +68,6 @@ a.navbar-item:hover,a.navbar-link:hover,a.navbar-item:focus {
 .search-box input:focus {
     cursor: auto;
     border-color: #3eaf7c;
-    box-shadow: 0 0 0 0.125em #a8d6c1;
+    /* box-shadow: 0 0 0 0.125em #a8d6c1; */
+    box-shadow: none;
 }

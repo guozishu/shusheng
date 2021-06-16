@@ -1,0 +1,33 @@
+
+.first__menu .button {
+  min-width: 12rem;
+}
+
+.item__hover {
+  background-color: whitesmoke;
+}
+
+.secondmenu__imput,.secondmenu__imput:hover,.secondmenu__imput:focus{
+  border: none;
+  outline: none;
+}
+
+.section {
+  padding: 0;
+}
+
+.content .for-toolbar ul {
+  margin-bottom: 0;
+}
+
+.for-container pre {
+  font-size: medium!important;
+}
+.left__menu .input.is-primary {
+  min-width: none;
+  width: auto;
+  flex: 1;
+}
+.level * {
+  margin-right: 10px;
+}

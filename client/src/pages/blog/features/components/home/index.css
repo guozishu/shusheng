@@ -1,0 +1,17 @@
+.content .tile .image {
+    background-image: url('../../../images/home.jpg');
+    background-size: 100%;
+    background-origin: border-box;
+    background-position: center;
+    background-repeat: no-repeat;
+   border-radius: 4px; 
+}
+
+.content figure:not(:first-child) {
+    margin-top:0;
+}
+
+.content figure {
+    margin-left: 0;
+    margin-right: 0;
+}

@@ -1,0 +1,11 @@
+.hero {
+  margin-bottom: 1.5rem;
+}
+
+.hero-body {
+  padding: 1.5rem;
+}
+
+.pagination .pagination-list li {
+  margin-top: 0;
+}

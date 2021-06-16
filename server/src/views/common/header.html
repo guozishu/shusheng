@@ -1,10 +1,11 @@
 <nav class="navbar is-fixed-top">
     <div class="navbar-brand">
         <a class="navbar-item" href="/">
-            <img src="/dist/common/images/home-logo.png" height="28">
+            <img src="/dist/common/images/home-logo.png" height="28"/>
             <span class="navbar-title">
-                王龙·博文
+                王海东·技术博客
             </span>
+            <a href="/face" class="navbar-other"></a>
         </a>
     </div>
 
@@ -14,8 +15,10 @@
                 <input class="input is-rounded is-small" type="text" />
             </a>
             {% for item in firstMenus %}
-                <a class="navbar-item" data-id={{item.id}}>
-                    <span>{{item.name}}</span>
+                <a href='/{{item.routeName}}/{{item.id}}' class="navbar-item" data-id={{item.id}}>
+                    <span class='{{ "active" if item.isActive else "" }}'>
+                        {{item.name}}
+                    </span>
                 </a>
             {% endfor %}
 
@@ -25,7 +28,7 @@
                 </a>
                 <div class="navbar-dropdown">
                     {% for item in secondMenus %}
-                        <a class="navbar-item" data-id={{item.id}}>
+                        <a href='/{{item.routeName}}/{{item.id}}' class="navbar-item" data-id={{item.id}}>
                             {{item.name}}
                         </a>
                     {% endfor %}
