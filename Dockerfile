@@ -15,7 +15,7 @@ RUN npm install
 
 EXPOSE 3000
 
-RUN npm run prod
+CMD ["npm","run","prod"]
 # 使端口 8080 可供此容器外的环境使用
 
 # 在容器启动时运行
