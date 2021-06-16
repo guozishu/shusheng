@@ -6,9 +6,9 @@ module.exports = {
   staticServer: path.resolve(__dirname, '../client'),
   faviconPath: path.resolve(__dirname, '../favicons'),
   logFilePath: path.resolve(__dirname, '../log'),
-  chunkMapPath: path.resolve(__dirname, '../client/dist/assets.json'),
+  chunkMapPath: path.resolve(__dirname, '../../client/dist/assets.json'),
   mode: 'prod',
-  dbInfomation:{
+  DBConnection:{
     host:'23.101.0.85',
     user:'root',
     password:'Wl87108mariadb',

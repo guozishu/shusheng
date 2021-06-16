@@ -74,7 +74,9 @@ const photoModule = () => {
         loader: "url-loader",
         options: {
           limit: 100,
-          outputPath: path => path.replace(/src\//g, ""),
+          outputPath: path => {
+            return path.replace(/src\/|pages\//g, "")
+          },
           name: "[path][name].[ext]",
         },
       },

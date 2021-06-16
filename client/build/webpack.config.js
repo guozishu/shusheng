@@ -29,7 +29,7 @@ const { devServer } = require('./module/wds')
 
 module.exports = {
   mode: ifProd("production", "development"),
-  devtool: ifProd("source-map", "cheap-module-source-map"), // "inline-source-map",
+  devtool: ifProd("cheap-module-source-map", "cheap-module-eval-source-map"), // "inline-source-map",
   target: "web",
   entry: entry,
   output: output,
@@ -64,9 +64,11 @@ module.exports = {
     },
   },
   plugins: [// 插件
+    manifestPluginFun(),
     miniCssExtractPluginFun(),
     optimizeCSSAssetsPluginFun(),
     compressionPluginFun(),
-    cleanWebpackPluginFun()
+    cleanWebpackPluginFun(),
+    
   ],
 };

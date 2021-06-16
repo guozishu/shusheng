@@ -68,7 +68,6 @@ export function Sliders(props) {
                     cateObj[name].push(item) 
                 })
                 setCateMenus(cateObj)
-                console.log(cateObj)
             }
         })
     }

@@ -1,7 +1,7 @@
 {% extends "../common/index.html" %}
 
-{% block head %}
-    <link rel="stylesheet" href="" media="all">
+{% block header %}
+    <link rel="stylesheet" href="{{ bundle('blog.index.css') }}" media="all">
 {% endblock %}
 
 {% block body %}
@@ -11,5 +11,6 @@
 {% endblock %}
 
 {% block footer %}
-  <script src="/dist/blog/index.js"></script>
+  <!-- <script src="/dist/blog/index.js"></script> -->
+  <script src="{{ bundle('blog.index.js') }}" media="all"></script>
 {% endblock %}

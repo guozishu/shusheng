@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node server/index.js --NODE_ENV=development",
+    "prod": "node server/index.js --NODE_ENV=production",
     "build": "./client/node_modules/.bin/webpack --config ./client/build/webpack.config.js",
     "test": "jest --coverage",
     "test:functional": "nemo -B test",

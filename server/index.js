@@ -14,8 +14,10 @@ const error = require('./src/middleware/error')
 const cacheControl = require('./src/middleware/cacheControl')
 const static = require('./src/middleware/static')
 const logger = require('./src/middleware/logger')
+const bundle = require('./src/middleware/bundle')
 
 app.use(init());
+app.use(bundle());
 app.use(logger());
 app.use(error());
 app.use(static());
