@@ -5,7 +5,7 @@ let config = require(`./${NODE_ENV}.js`)
 
 config = {
   ...{
-    PORT: process.env.PORT || 3000,
+    PORT: process.env.PORT || 8080,
     NODE_ENV
   }, ...config
 }

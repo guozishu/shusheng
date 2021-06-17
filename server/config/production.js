@@ -3,13 +3,12 @@ const env = process && process.env
 const { argv }  = require('yargs')
 
 module.exports = {
-  staticServer: path.resolve(__dirname, '../client'),
+  staticServer: path.resolve(__dirname, '../../client'),
   faviconPath: path.resolve(__dirname, '../favicons'),
   logFilePath: path.resolve(__dirname, '../log'),
   chunkMapPath: path.resolve(__dirname, '../../client/dist/assets.json'),
-  mode: 'prod',
   DBConnection:{
-    host:'23.101.0.85',
+    host:'127.0.0.1',
     user:'root',
     password:'Wl87108mariadb',
     dataBase:'learnDB'
