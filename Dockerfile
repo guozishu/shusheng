@@ -14,6 +14,8 @@ RUN npm run server:install
 
 RUN npm run client:install
 
+RUN npm run client:build
+
 EXPOSE 8080
 
 CMD ["npm","run","prod"]
