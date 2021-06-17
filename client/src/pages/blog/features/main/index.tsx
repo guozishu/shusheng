@@ -2,7 +2,7 @@ import React from 'react';
 import {Home} from '../components/home/index'
 import {Editor} from '../components/editor/index'
 
-import './Index.css'
+import './index.css'
 
 export function Main(props) {
     const {note} = props.data

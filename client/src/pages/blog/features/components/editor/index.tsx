@@ -1,6 +1,6 @@
 import React from 'react';
 import EditNote from 'for-editor';
-import './Index.css'
+import './index.css'
 
 export function Editor(props) {
     const {note} = props.data;

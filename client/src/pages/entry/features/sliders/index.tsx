@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import './Index.css'
+import './index.css'
 
 export function Sliders(props) {
     const dispatch = useDispatch();

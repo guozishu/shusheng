@@ -1,5 +1,5 @@
 const mariadb = require('mariadb');
-const { DBConnection } = require('../../../config');
+const { DBConnection } = require('../../../config/index');
 
 let dataBaseLink = {
     database: DBConnection.dataBase,

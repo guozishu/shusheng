@@ -14,7 +14,8 @@ const TerserPlugin = require('terser-webpack-plugin')
 // 清理插件--清理 /dist 文件夹
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 // manifest 缓存
-const ManifestPlugin = require('webpack-manifest-plugin')
+// const ManifestPlugin = require('webpack-manifest-plugin')
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 const { getIfUtils, removeEmpty } = require("webpack-config-utils");
 const { ifProduction: ifProd, ifNotProduction: ifDev } = getIfUtils(
@@ -52,7 +53,7 @@ function compressionPluginFun () {
 }
 
 function manifestPluginFun () {
-  return new ManifestPlugin({
+  return new WebpackManifestPlugin({
     fileName: 'assets.json',
     publicPath: '/',
     filter: function (file) {

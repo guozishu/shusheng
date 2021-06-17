@@ -5,10 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "node server/index.js --NODE_ENV=development",
-    "build": "./client/node_modules/.bin/webpack --config ./client/build/webpack.config.js",
+    "prod": "node server/index.js --NODE_ENV=production",
+    "client:install": "npm install --prefix client",
+    "client:build": "npm run build --prefix client",
+    "server:install": "npm install --prefix server",
     "test": "jest --coverage",
     "test:functional": "nemo -B test",
-    "test:functional:debug": "nemo -B test --inspect-brk --inspect"
+    "test:functional:debug": "nemo -B test --inspect-brk --inspect",
+    "clean": "rm -rf client/node_modules server/node_modules node_modules"
   },
   "repository": {
     "type": "git",

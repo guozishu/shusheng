@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getUrlStrArgs } from '../../../../common/utils/index'
-import './Index.css'
+import './index.css'
 
 export function Sliders(props) {
     const {setNote} = props.data
@@ -68,7 +68,6 @@ export function Sliders(props) {
                     cateObj[name].push(item) 
                 })
                 setCateMenus(cateObj)
-                console.log(cateObj)
             }
         })
     }
