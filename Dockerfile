@@ -4,12 +4,11 @@ FROM node:14
 WORKDIR /home/guozishu/project
 # 拷贝当前的目录所有文件到工作目录
 # 安装依赖包
+COPY . .
 
 RUN npm run client:install
 RUN npm run server:install
 RUN npm install
-
-COPY . .
 
 EXPOSE 8080
 
