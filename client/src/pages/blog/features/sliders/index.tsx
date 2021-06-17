@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getUrlStrArgs } from '../../../../common/utils/index'
-import './Index.css'
+import './index.css'
 
 export function Sliders(props) {
     const {setNote} = props.data
