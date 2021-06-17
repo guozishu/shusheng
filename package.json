@@ -11,7 +11,8 @@
     "server:install": "npm install --prefix server",
     "test": "jest --coverage",
     "test:functional": "nemo -B test",
-    "test:functional:debug": "nemo -B test --inspect-brk --inspect"
+    "test:functional:debug": "nemo -B test --inspect-brk --inspect",
+    "clean": "rm -rf client/node_modules server/node_modules node_modules"
   },
   "repository": {
     "type": "git",
