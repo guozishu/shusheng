@@ -5,12 +5,10 @@ WORKDIR /home/guozishu/project
 # 拷贝当前的目录所有文件到工作目录
 ADD . /home/guozishu/project/
 # 安装依赖包
-WORKDIR /home/guozishu/project
-RUN npm install
-WORKDIR /home/guozishu/project/client
-RUN npm install
-RUN npm run build
-WORKDIR /home/guozishu/project/server
+
+RUN npm run client:install
+RUN npm run client:build
+RUN npm run server:install
 RUN npm install
 
 EXPOSE 3000
