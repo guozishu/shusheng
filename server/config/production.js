@@ -8,7 +8,7 @@ module.exports = {
   logFilePath: path.resolve(__dirname, '../log'),
   chunkMapPath: path.resolve(__dirname, '../../client/dist/assets.json'),
   DBConnection:{
-    host:'127.0.0.1',
+    host:'23.101.0.85',
     user:'root',
     password:'Wl87108mariadb',
     dataBase:'learnDB'

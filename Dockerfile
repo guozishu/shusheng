@@ -11,15 +11,10 @@ RUN npm run clean
 RUN npm install
 
 RUN npm run server:install
-
-RUN npm run client:install
-
-RUN npm run client:build
-
-EXPOSE 8080
-
-CMD ["npm","run","prod"]
 # 使端口 8080 可供此容器外的环境使用
-
+EXPOSE 8080
 # 在容器启动时运行
-# CMD ["npm","start"]
+CMD ["npm","run","prod"]
+
+
+
