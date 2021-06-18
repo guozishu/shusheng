@@ -22,14 +22,14 @@ const { ifProduction: ifProd, ifNotProduction: ifDev } = getIfUtils(
   process.env.NODE_ENV
 );
 
-const NODE_ENV = ifProd("prod", "dev")
+const NODE_ENV = ifProd("production", "development")
 
 const name = '[name]'
 const hash = '[hash:8]' // 非覆盖式发布，自己小项目就不用了
 
 function miniCssExtractPluginFun () {
   return new MiniCssExtractPlugin({ // 适用于所有用例，css抽出
-    filename: `${name}${NODE_ENV !== 'dev' ? `-${hash}` : ''}.css`
+    filename: `${name}${NODE_ENV !== 'development' ? `-${hash}` : ''}.css`
   })
 }
 

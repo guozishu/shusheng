@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://./src/pages/entry/features/noteList/index.css"],"names":[],"mappings":"AAAA,MACE,oBACF,CAEA,WACE,cACF,CAEA,gCACE,YACF","file":"511-6e9fa491.css","sourcesContent":[".hero {\n  margin-bottom: 1.5rem;\n}\n\n.hero-body {\n  padding: 1.5rem;\n}\n\n.pagination .pagination-list li {\n  margin-top: 0;\n}"]}

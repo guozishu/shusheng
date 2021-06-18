@@ -52,8 +52,10 @@ function Login() {
         })
         .then(response => response.json())
         .then(res => {
-            if (!res.code) {
-              window.location.reload()
+            if (res.code === 0) {
+              setTimeout(() => {
+                window.location.reload()
+              },2000)
             }
         })
      

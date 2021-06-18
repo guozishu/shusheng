@@ -6,7 +6,7 @@ const outputFun = () => {
     path: outputDir,
     filename: '[name].js'
   }
-  if (process.env.NODE_ENV === 'prod') {
+  if (process.env.NODE_ENV === 'production') {
     options = {
       path: outputDir,
       hashDigestLength: 8,
