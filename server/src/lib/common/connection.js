@@ -1,4 +1,4 @@
-const mariadb = require('mariadb');
+const mariadb = require('mysql');
 const { DBConnection } = require('../../../config/index');
 
 let dataBaseLink = {
